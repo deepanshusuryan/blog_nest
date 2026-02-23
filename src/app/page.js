@@ -1,5 +1,8 @@
+import Home from "@/view/pages/home";
+import "../styles/home.css"
+
 export default function page(){
   return(
-    <h1>Welcome to blog Application let's start your jouney with us</h1>
+    <Home/>
   )
 }
