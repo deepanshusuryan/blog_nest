@@ -1,11 +1,17 @@
-export const Header=()=>{
+"use client"
+import { useRouter } from "next/navigation"
+
+const Header=()=>{
+    const router=useRouter();
     return(
         <div style={{display: "flex"}}>
             Header
-            <div>
+            <button onClick={()=>router.push("/login")}>
                 Login
-            </div>
+            </button>
             <div>Logout</div>
         </div>
     )
 }
+
+export default Header;

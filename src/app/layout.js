@@ -1,6 +1,7 @@
 import { Layout } from "@/common/layout";
 import "./globals.css";
 import { ToastContainer } from "react-toastify";
+import { AuthProvider } from "@/common/AuthContext";
 
 export default function RootLayout({ children }) {
   return (
@@ -12,7 +13,9 @@ export default function RootLayout({ children }) {
             autoClose={3000}
             theme="colored"
           />
-          {children}
+          <AuthProvider>
+            {children}
+          </AuthProvider>
         </Layout>
       </body>
     </html>
