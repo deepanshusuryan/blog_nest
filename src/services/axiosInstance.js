@@ -35,10 +35,16 @@ axiosInstance.interceptors.response.use(
     async (error) => {
         const originalRequest = error.config;
 
-        // If 401 and we haven't already retried this request
+        if (
+            originalRequest.url?.includes("/user/refresh-token") ||
+            originalRequest.url?.includes("/user/login") ||
+            originalRequest.url?.includes("/user/logout")
+        ) {
+            return Promise.reject(error);
+        }
+
         if (error.response?.status === 401 && !originalRequest._retry) {
             if (isRefreshing) {
-                // Queue this request until refresh is done
                 return new Promise((resolve, reject) => {
                     failedQueue.push({ resolve, reject });
                 })
@@ -54,20 +60,17 @@ axiosInstance.interceptors.response.use(
 
             try {
                 const response = await axiosInstance.post("/user/refresh-token");
-
                 const newToken = response.data.accessToken;
                 localStorage.setItem("accessToken", newToken);
                 axiosInstance.defaults.headers.Authorization = `Bearer ${newToken}`;
                 processQueue(null, newToken);
-
                 originalRequest.headers.Authorization = `Bearer ${newToken}`;
-                return axiosInstance(originalRequest); // retry original
+                return axiosInstance(originalRequest);
             } catch (refreshError) {
                 processQueue(refreshError, null);
-                // Refresh failed → force logout
                 localStorage.removeItem("accessToken");
                 localStorage.removeItem("user");
-                window.location.href = "/user/login";
+                window.location.href = "/login";
                 return Promise.reject(refreshError);
             } finally {
                 isRefreshing = false;

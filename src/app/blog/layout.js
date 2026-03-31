@@ -1,12 +1,14 @@
-// app/blog/layout.js
+import { PrivateRoute } from "@/common/ProtectedRoutes";
 import { SideNav } from "../../common/sideNav"
 export default function BlogLayout({ children }) {
     return (
-        <div style={{ display: "flex" }}>
-            <SideNav />
-            <div style={{ flex: 1 }}>
-                {children}
+        <PrivateRoute>
+            <div style={{ display: "flex" }}>
+                <SideNav />
+                <div style={{ flex: 1 }}>
+                    {children}
+                </div>
             </div>
-        </div>
+        </PrivateRoute>
     );
 }

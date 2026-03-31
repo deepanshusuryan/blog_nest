@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/common/AuthContext";
 
-// 🔒 Use this on pages that REQUIRE login (e.g. /blog, /dashboard)
 export const PrivateRoute = ({ children }) => {
   const { user, loading } = useAuth();
   const router = useRouter();

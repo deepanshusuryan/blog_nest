@@ -10,14 +10,13 @@ import {
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser]       = useState(null);
-  const [token, setToken]     = useState(null);
-  const [loading, setLoading] = useState(true); // restoring session
+  const [user, setUser] = useState(null);
+  const [token, setToken] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  // Restore session from localStorage on app load
   useEffect(() => {
     const savedToken = localStorage.getItem("accessToken");
-    const savedUser  = localStorage.getItem("user");
+    const savedUser = localStorage.getItem("user");
     if (savedToken && savedUser) {
       setToken(savedToken);
       setUser(JSON.parse(savedUser));
@@ -30,14 +29,6 @@ export const AuthProvider = ({ children }) => {
     setToken(accessToken);
     localStorage.setItem("accessToken", accessToken);
     localStorage.setItem("user", JSON.stringify(userData));
-    // ⚠️ refreshToken is NOT stored here — it lives in httpOnly cookie
-  };
-
-  const clearSession = () => {
-    setUser(null);
-    setToken(null);
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("user");
   };
 
   const emailLogin = async (email, password) => {
@@ -60,13 +51,21 @@ export const AuthProvider = ({ children }) => {
     return data;
   };
 
+  const clearSession = () => {
+    setUser(null);
+    setToken(null);
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("user");
+  };
+
   const logout = async () => {
     try {
-      await logoutService(); // clears httpOnly cookie on server
-    } catch (_) {
-      // clear locally even if API fails
-    } finally {
+      const data = await logoutService();
       clearSession();
+      return data;
+    } catch (error) {
+      clearSession();
+      throw error;
     }
   };
 

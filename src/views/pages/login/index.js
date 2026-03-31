@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/common/AuthContext";
+import { toast } from "react-toastify";
 
 const LoginForm = () => {
     const [formData, setFormData] = useState({ email: "", password: "" });
@@ -16,9 +17,12 @@ const LoginForm = () => {
         e.preventDefault();
         try {
             const data = await emailLogin(formData.email, formData.password);
+            console.log("data",data);
             if (data?.success) {
-                alert(data.message);
+                toast.success(data.message);
                 router.push("/blog");
+            } else{
+                toast.error(data.message);
             }
         } catch (error) {
             console.log("Error while login", error);
