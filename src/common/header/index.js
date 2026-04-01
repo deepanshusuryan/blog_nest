@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 
 const Header = () => {
     const router = useRouter();
-    const { logout } = useAuth();
+    const { user, logout } = useAuth();
 
     const handleLogout = async () => {
         try {
@@ -15,16 +15,18 @@ const Header = () => {
                 router.push("/login");
             }
         } catch (error) {
-
+            console.error(error);
         }
     }
+
     return (
         <div style={{ display: "flex" }}>
             Header
-            <button onClick={() => router.push("/login")}>
-                Login
-            </button>
-            <button onClick={handleLogout}>Logout</button>
+            {user ? (
+                <button onClick={handleLogout}>Logout</button>
+            ) : (
+                <button onClick={() => router.push("/login")}>Login</button>
+            )}
         </div>
     )
 }

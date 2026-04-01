@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/common/AuthContext";
 import { toast } from "react-toastify";
+import { FcGoogle } from "react-icons/fc";
 
 const LoginForm = () => {
     const [formData, setFormData] = useState({ email: "", password: "" });
@@ -54,6 +55,12 @@ const LoginForm = () => {
                 </div>
                 <button type="submit">Login</button>
             </form>
+            <div style={{cursor: "pointer"}}>
+                <FcGoogle />Continue with google
+            </div>
+            <div>
+                <small>Don't have an account <span onClick={()=>router.push("/signup")} style={{cursor: "pointer"}}>Sign up</span></small>
+            </div>
         </div>
     );
 };
