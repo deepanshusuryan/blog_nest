@@ -2,6 +2,7 @@
 import { useRouter } from "next/navigation"
 import { useAuth } from "../AuthContext";
 import { toast } from "react-toastify";
+import Link from "next/link";
 
 const Header = () => {
     const router = useRouter();
@@ -23,11 +24,13 @@ const Header = () => {
         <div style={{ display: "flex" }}>
             Header
             {user ? (
-                <button onClick={handleLogout}>Logout</button>
+                <>
+                    <button onClick={handleLogout}>Logout</button>
+                    <button><Link href={`/nest/profile/${user?._id}`}>Profile</Link></button>
+                </>
             ) : (
                 <button onClick={() => router.push("/login")}>Login</button>
             )}
-            <button>Profile</button>
         </div>
     )
 }

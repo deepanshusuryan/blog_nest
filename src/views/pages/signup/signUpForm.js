@@ -174,9 +174,9 @@ const SignUpForm = () => {
                     <button type="submit">Submit</button>
                 </div>
             </form>
-            <div style={{ cursor: "pointer" }}>
+            {/* <div style={{ cursor: "pointer" }}>
                 <FcGoogle />Continue with google
-            </div>
+            </div> */}
             <div>
                 <small> Already have an account ? <span onClick={() => router.push("/login")} style={{ cursor: "pointer" }}>Login</span></small>
             </div>
