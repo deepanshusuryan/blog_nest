@@ -21,7 +21,7 @@ const LoginForm = () => {
             console.log("data",data);
             if (data?.success) {
                 toast.success(data.message);
-                router.push("/blog");
+                router.push("/nest");
             } else{
                 toast.error(data.message);
             }

@@ -25,7 +25,7 @@ export const PublicRoute = ({ children }) => {
 
   useEffect(() => {
     if (!loading && user) {
-      router.replace("/blog");
+      router.replace("/nest");
     }
   }, [user, loading]);
 

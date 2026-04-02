@@ -12,7 +12,7 @@ const Header = () => {
             const res = await logout();
             if (res?.success) {
                 toast.success(res.message);
-                router.push("/login");
+                router.push("/");
             }
         } catch (error) {
             console.error(error);
@@ -27,6 +27,7 @@ const Header = () => {
             ) : (
                 <button onClick={() => router.push("/login")}>Login</button>
             )}
+            <button>Profile</button>
         </div>
     )
 }

@@ -1,5 +1,5 @@
 import { PublicRoute } from "@/common/ProtectedRoutes";
-import LoginForm from "@/views/pages/login";
+import LoginForm from "@/views/pages/login/loginForm";
 
 const Login = () => {
     return (
