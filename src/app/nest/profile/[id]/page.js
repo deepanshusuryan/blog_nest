@@ -1,10 +1,9 @@
 import Profile from "@/views/pages/profile/view";
 
-const page = ({ params }) => {
-    const id = params.id;
+const page = () => {
     return (
         <div>
-            <Profile id={id}/>
+            <Profile />
         </div>
     )
 }

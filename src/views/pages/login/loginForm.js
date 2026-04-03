@@ -18,7 +18,7 @@ const LoginForm = () => {
 
     const handleShowPassword = () => {
         setShowPassword(true);
-        setTimeout(() => setShowPassword(false), 3000);
+        setTimeout(() => setShowPassword(false), 2000);
     };
 
     const [errors, setErrors] = useState({
@@ -30,27 +30,27 @@ const LoginForm = () => {
         let newErrors = {};
         let isValid = true;
 
-        if (!form.email.trim()) {
+        if (!formData.email.trim()) {
             newErrors.email = "Email is required";
             isValid = false;
-        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
             newErrors.email = "Enter a valid email";
             isValid = false;
         }
 
-        if (!form.password) {
+        if (!formData.password) {
             newErrors.password = "Password is required";
             isValid = false;
-        } else if (form.password.length < 8) {
+        } else if (formData.password.length < 8) {
             newErrors.password = "Password must be at least 8 characters";
             isValid = false;
-        } else if (!/[a-z]/.test(form.password)) {
+        } else if (!/[a-z]/.test(formData.password)) {
             newErrors.password = "Password must include at least one lowercase letter";
-        } else if (!/[A-Z]/.test(form.password)) {
+        } else if (!/[A-Z]/.test(formData.password)) {
             newErrors.password = "Password must include at least one uppercase letter";
-        } else if (!/\d/.test(form.password)) {
+        } else if (!/\d/.test(formData.password)) {
             newErrors.password = "Password must include at least one number";
-        } else if (!/[@$!%*?&]/.test(form.password)) {
+        } else if (!/[@$!%*?&]/.test(formData.password)) {
             newErrors.password = "Password must include at least one special character";
         }
 
@@ -59,8 +59,9 @@ const LoginForm = () => {
     };
 
     const handleSubmit = async (e) => {
-        if (!loginValidation()) return;
         e.preventDefault();
+        if (!loginValidation()) return;
+
         try {
             const data = await emailLogin(formData.email, formData.password);
             console.log("data", data);
@@ -98,13 +99,13 @@ const LoginForm = () => {
                         value={formData.password}
                         onChange={handleChange}
                     />
-                    {errors.password && <small style={{ color: "red" }}>{errors.password}</small>}
                     <span
                         onClick={handleShowPassword}
                         style={{ cursor: "pointer" }}
                     >
                         {showPassword ? <FaEyeSlash /> : <FaEye />}
                     </span>
+                    {errors.password && <small style={{ color: "red" }}>{errors.password}</small>}
                 </div>
                 <button type="submit">Login</button>
             </form>
