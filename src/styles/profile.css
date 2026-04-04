@@ -1,0 +1,324 @@
+/* profile.css — BlogNest Profile Page */
+
+/* ── Root & Background ── */
+.profile-root {
+  min-height: 100vh;
+  background: var(--color-bg);
+  padding: var(--space-10, 2.5rem) var(--space-6, 1.5rem);
+  position: relative;
+  font-family: var(--font-body, Georgia, serif);
+}
+
+.profile-bg-grain {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 180px;
+}
+
+/* ── Container ── */
+.profile-container {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* ── Base Card ── */
+.profile-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 18px;
+  padding: 2rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 16px rgba(0, 0, 0, 0.04);
+  animation: profileFadeUp 0.4s ease both;
+}
+
+@keyframes profileFadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Hero Card ── */
+.profile-hero-card {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  animation-delay: 0s;
+}
+
+.profile-hero-accent {
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: var(--color-amber-soft);
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+/* ── Avatar ── */
+.profile-avatar-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.profile-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--color-amber);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid var(--color-surface);
+  box-shadow: 0 0 0 2px var(--color-amber), 0 4px 16px rgba(0,0,0,0.12);
+}
+
+.profile-avatar-initials {
+  font-family: var(--font-display, "Georgia", serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-surface);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.profile-status-dot {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 14px;
+  height: 14px;
+  background: #3dbf6e;
+  border-radius: 50%;
+  border: 2px solid var(--color-surface);
+}
+
+/* ── Hero Info ── */
+.profile-hero-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.profile-eyebrow {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-amber);
+  margin: 0 0 0.25rem;
+}
+
+.profile-name {
+  font-family: var(--font-display, "Georgia", serif);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-ink);
+  margin: 0 0 0.35rem;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.profile-tagline {
+  font-size: 0.88rem;
+  color: var(--color-muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ── Edit Button ── */
+.profile-edit-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 1.1rem;
+  border-radius: 10px;
+  background: var(--color-bg);
+  border: 1.5px solid var(--color-border);
+  color: var(--color-ink-light);
+  font-family: var(--font-body, Georgia, serif);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease,
+    transform 0.15s ease;
+}
+
+.profile-edit-btn:hover {
+  background: var(--color-amber);
+  border-color: var(--color-amber);
+  color: var(--color-surface);
+  transform: translateY(-1px);
+}
+
+/* ── Info Grid ── */
+.profile-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+@media (max-width: 560px) {
+  .profile-grid {
+    grid-template-columns: 1fr;
+  }
+  .profile-hero-card {
+    flex-wrap: wrap;
+  }
+}
+
+/* ── Section Title ── */
+.profile-section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin: 0 0 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* ── Details Card ── */
+.profile-details-card {
+  animation-delay: 0.06s;
+}
+
+.profile-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.profile-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.profile-field-label {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.profile-field-value {
+  font-size: 0.92rem;
+  color: var(--color-ink);
+  font-weight: 500;
+  padding: 0.5rem 0.75rem;
+  background: var(--color-bg);
+  border-radius: 8px;
+  border: 1px solid transparent;
+}
+
+.profile-field-empty {
+  font-style: italic;
+  color: var(--color-border);
+  font-weight: 400;
+}
+
+.profile-field-input {
+  font-size: 0.92rem;
+  color: var(--color-ink);
+  font-weight: 500;
+  padding: 0.5rem 0.75rem;
+  background: var(--color-bg);
+  border-radius: 8px;
+  border: 1.5px solid var(--color-amber);
+  outline: none;
+  font-family: var(--font-body, Georgia, serif);
+  box-shadow: 0 0 0 3px var(--color-amber-soft);
+  transition: box-shadow 0.15s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.profile-field-input:focus {
+  box-shadow: 0 0 0 4px var(--color-amber-soft);
+}
+
+/* ── Stats Card ── */
+.profile-stats-card {
+  animation-delay: 0.1s;
+}
+
+.profile-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.profile-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  background: var(--color-bg);
+  border-radius: 12px;
+  padding: 1rem 0.5rem;
+  border: 1px solid var(--color-border);
+  transition: border-color 0.18s ease, background 0.18s ease;
+}
+
+.profile-stat:hover {
+  border-color: var(--color-amber);
+  background: var(--color-amber-soft);
+}
+
+.profile-stat-value {
+  font-family: var(--font-display, "Georgia", serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-ink);
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.profile-stat-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+/* ── Joined Badge ── */
+.profile-joined {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  color: var(--color-muted);
+  margin: 0;
+  animation: profileFadeUp 0.4s ease 0.18s both;
+}

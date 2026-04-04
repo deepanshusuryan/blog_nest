@@ -9,7 +9,7 @@ export const PrivateRoute = ({ children }) => {
 
   useEffect(() => {
     if (!loading && !user) {
-      router.replace("/login");
+      router.push("/login");
     }
   }, [user, loading]);
 
@@ -25,12 +25,33 @@ export const PublicRoute = ({ children }) => {
 
   useEffect(() => {
     if (!loading && user) {
-      router.replace("/nest");
+      router.push("/nest");
     }
   }, [user, loading]);
 
   if (loading) return <div>Loading...</div>;
   if (user) return null;
+
+  return children;
+};
+
+export const AdminRoute = ({ children }) => {
+  const { user, loading } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!loading && !user) {
+      router.push("/login");
+      return;
+    }
+    if (!loading && user && user?.role !== "super_admin") {
+      router.push("/nest");
+    }
+  }, [user, loading]);
+
+  if (loading) return <div>Loading...</div>;
+  if (!user) return null;
+  if (user.role !== "super_admin") return null;
 
   return children;
 };

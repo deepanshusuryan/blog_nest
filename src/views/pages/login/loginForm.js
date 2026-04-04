@@ -5,12 +5,15 @@ import { useAuth } from "@/common/AuthContext";
 import { toast } from "react-toastify";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
+import "../../../styles/login-form.css";
 
 const LoginForm = () => {
     const [formData, setFormData] = useState({ email: "", password: "" });
     const { emailLogin } = useAuth();
     const [showPassword, setShowPassword] = useState(false);
     const router = useRouter();
+
+    const [errors, setErrors] = useState({ email: "", password: "" });
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -20,11 +23,6 @@ const LoginForm = () => {
         setShowPassword(true);
         setTimeout(() => setShowPassword(false), 2000);
     };
-
-    const [errors, setErrors] = useState({
-        email: "",
-        password: "",
-    });
 
     const loginValidation = () => {
         let newErrors = {};
@@ -64,7 +62,6 @@ const LoginForm = () => {
 
         try {
             const data = await emailLogin(formData.email, formData.password);
-            console.log("data", data);
             if (data?.success) {
                 toast.success(data.message);
                 router.push("/nest");
@@ -77,44 +74,115 @@ const LoginForm = () => {
     };
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Email</label>
-                    <input
-                        type="text"
-                        placeholder="Enter email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                    />
-                    {errors.email && <small style={{ color: "red" }}>{errors.email}</small>}
+        <div className="login-page">
+
+            {/* ── LEFT PANEL ── */}
+            <div className="login-left">
+                <a className="auth-logo" href="/">
+                    <div className="auth-logo-icon">B</div>
+                    <span className="auth-logo-text">Blog<span>Nest</span></span>
+                </a>
+
+                <div className="login-hero">
+                    <div className="login-hero-eyebrow">For writers, by writers</div>
+                    <h2>
+                        Welcome<br />
+                        <em>back.</em>
+                    </h2>
+                    <p>
+                        Your stories, your readers, your nest — pick up exactly where you left off.
+                    </p>
                 </div>
-                <div>
-                    <label>Password</label>
-                    <input
-                        type={showPassword ? "text" : "password"}
-                        placeholder="Enter password"
-                        name="password"
-                        value={formData.password}
-                        onChange={handleChange}
-                    />
-                    <span
-                        onClick={handleShowPassword}
-                        style={{ cursor: "pointer" }}
-                    >
-                        {showPassword ? <FaEyeSlash /> : <FaEye />}
-                    </span>
-                    {errors.password && <small style={{ color: "red" }}>{errors.password}</small>}
+
+                <div className="login-quotes">
+                    <div className="quote-card">
+                        <p>"BlogNest helped me grow from 0 to 12,000 readers in three months."</p>
+                        <div className="quote-author">
+                            <div className="quote-avatar" style={{ background: "var(--color-amber)" }}>A</div>
+                            <span className="quote-name">Ananya Mehta · Tech Writer</span>
+                        </div>
+                    </div>
+                    <div className="quote-card">
+                        <p>"The cleanest writing experience I've found. Nothing gets in the way of the words."</p>
+                        <div className="quote-author">
+                            <div className="quote-avatar" style={{ background: "var(--color-ink-light)" }}>R</div>
+                            <span className="quote-name">Rahul Sharma · Culture & Design</span>
+                        </div>
+                    </div>
                 </div>
-                <button type="submit">Login</button>
-            </form>
-            {/* <div style={{cursor: "pointer"}}>
-                <FcGoogle />Continue with google
-            </div> */}
-            <div>
-                <small>Don't have an account <span onClick={() => router.push("/signup")} style={{ cursor: "pointer" }}>Sign up</span></small>
             </div>
+
+            {/* ── RIGHT PANEL ── */}
+            <div className="login-right">
+                <div className="login-form-wrapper">
+
+                    <div className="login-heading">
+                        <h1>Sign in to your nest</h1>
+                        <p>Good to have you back. Let's get writing.</p>
+                    </div>
+
+                    <form onSubmit={handleSubmit}>
+                        <div className="auth-field">
+                            <label htmlFor="login-email">Email address</label>
+                            <div className="auth-input-wrap">
+                                <input
+                                    type="text"
+                                    id="login-email"
+                                    placeholder="you@example.com"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    autoComplete="email"
+                                />
+                            </div>
+                            {errors.email && <small className="auth-field-error">{errors.email}</small>}
+                        </div>
+
+                        <div className="auth-field">
+                            <label htmlFor="login-password">Password</label>
+                            <div className="auth-input-wrap">
+                                <input
+                                    type={showPassword ? "text" : "password"}
+                                    id="login-password"
+                                    placeholder="Min. 8 characters"
+                                    name="password"
+                                    value={formData.password}
+                                    onChange={handleChange}
+                                    className="with-icon"
+                                    autoComplete="current-password"
+                                />
+                                <button
+                                    type="button"
+                                    className="auth-eye-btn"
+                                    onClick={handleShowPassword}
+                                    aria-label="Toggle password visibility"
+                                >
+                                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                                </button>
+                            </div>
+                            {errors.password && <small className="auth-field-error">{errors.password}</small>}
+                        </div>
+
+                        <button type="submit" className="auth-submit-btn">
+                            Sign in →
+                        </button>
+                    </form>
+
+                    <div className="auth-divider">or</div>
+
+                    <button className="auth-google-btn">
+                        <FcGoogle style={{ fontSize: "18px" }} />
+                        Continue with Google
+                    </button>
+
+                    <div className="auth-footer-text">
+                        Don't have an account?{" "}
+                        <span onClick={() => router.push("/signup")}>Sign up</span>
+                    </div>
+
+                </div>
+            </div>
+
         </div>
     );
 };
