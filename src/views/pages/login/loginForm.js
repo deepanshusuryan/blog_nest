@@ -8,49 +8,59 @@ import { FcGoogle } from "react-icons/fc";
 import "../../../styles/login-form.css";
 
 const LoginForm = () => {
-    const [formData, setFormData] = useState({ email: "", password: "" });
+    const [formData, setFormData] = useState({ identifier: "", password: "" });
     const { emailLogin } = useAuth();
     const [showPassword, setShowPassword] = useState(false);
     const router = useRouter();
 
-    const [errors, setErrors] = useState({ email: "", password: "" });
-
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
+    const [errors, setErrors] = useState({ identifier: "", password: "" });
 
     const handleShowPassword = () => {
         setShowPassword(true);
         setTimeout(() => setShowPassword(false), 2000);
     };
 
+    const validateField = (name, value) => {
+        switch (name) {
+            case "identifier":
+                if (!value.trim()) return "Email or username is required";
+                if (value.includes("@") && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value))
+                    return "Enter a valid email address";
+                if (!value.includes("@") && value.trim().length < 3)
+                    return "Username must be at least 3 characters";
+                return "";
+
+            case "password":
+                if (!value) return "Password is required";
+                if (value.length < 8) return "Min 8 characters required";
+                if (!/[a-z]/.test(value)) return "Include lowercase";
+                if (!/[A-Z]/.test(value)) return "Include uppercase";
+                if (!/\d/.test(value)) return "Include number";
+                if (!/[@$!%*?&]/.test(value)) return "Include special char";
+                return "";
+
+            default:
+                return "";
+        }
+    };
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+
+        const errorMsg = validateField(name, value);
+        setErrors((prev) => ({ ...prev, [name]: errorMsg }));
+    };
+
     const loginValidation = () => {
         let newErrors = {};
         let isValid = true;
 
-        if (!formData.email.trim()) {
-            newErrors.email = "Email is required";
-            isValid = false;
-        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-            newErrors.email = "Enter a valid email";
-            isValid = false;
-        }
-
-        if (!formData.password) {
-            newErrors.password = "Password is required";
-            isValid = false;
-        } else if (formData.password.length < 8) {
-            newErrors.password = "Password must be at least 8 characters";
-            isValid = false;
-        } else if (!/[a-z]/.test(formData.password)) {
-            newErrors.password = "Password must include at least one lowercase letter";
-        } else if (!/[A-Z]/.test(formData.password)) {
-            newErrors.password = "Password must include at least one uppercase letter";
-        } else if (!/\d/.test(formData.password)) {
-            newErrors.password = "Password must include at least one number";
-        } else if (!/[@$!%*?&]/.test(formData.password)) {
-            newErrors.password = "Password must include at least one special character";
-        }
+        Object.keys(formData).forEach((key) => {
+            const error = validateField(key, formData[key]);
+            if (error) isValid = false;
+            newErrors[key] = error;
+        });
 
         setErrors(newErrors);
         return isValid;
@@ -61,7 +71,7 @@ const LoginForm = () => {
         if (!loginValidation()) return;
 
         try {
-            const data = await emailLogin(formData.email, formData.password);
+            const data = await emailLogin(formData.identifier, formData.password);
             if (data?.success) {
                 toast.success(data.message);
                 router.push("/nest");
@@ -75,8 +85,6 @@ const LoginForm = () => {
 
     return (
         <div className="login-page">
-
-            {/* ── LEFT PANEL ── */}
             <div className="login-left">
                 <a className="auth-logo" href="/">
                     <div className="auth-logo-icon">B</div>
@@ -123,19 +131,21 @@ const LoginForm = () => {
 
                     <form onSubmit={handleSubmit}>
                         <div className="auth-field">
-                            <label htmlFor="login-email">Email address</label>
+                            <label htmlFor="login-identifier">Email or Username</label>
                             <div className="auth-input-wrap">
                                 <input
                                     type="text"
-                                    id="login-email"
-                                    placeholder="you@example.com"
-                                    name="email"
-                                    value={formData.email}
+                                    id="login-identifier"
+                                    placeholder="you@example.com or username"
+                                    name="identifier"
+                                    value={formData.identifier}
                                     onChange={handleChange}
-                                    autoComplete="email"
+                                    autoComplete="username"
                                 />
                             </div>
-                            {errors.email && <small className="auth-field-error">{errors.email}</small>}
+                            {errors.identifier && (
+                                <small className="auth-field-error">{errors.identifier}</small>
+                            )}
                         </div>
 
                         <div className="auth-field">
@@ -160,7 +170,9 @@ const LoginForm = () => {
                                     {showPassword ? <FaEyeSlash /> : <FaEye />}
                                 </button>
                             </div>
-                            {errors.password && <small className="auth-field-error">{errors.password}</small>}
+                            {errors.password && (
+                                <small className="auth-field-error">{errors.password}</small>
+                            )}
                         </div>
 
                         <button type="submit" className="auth-submit-btn">

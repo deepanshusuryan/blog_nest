@@ -31,8 +31,8 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem("user", JSON.stringify(userData));
   };
 
-  const emailLogin = async (email, password) => {
-    const data = await loginWithEmailPassword(email, password);
+  const emailLogin = async (identifier, password) => {
+    const data = await loginWithEmailPassword(identifier, password);
     if (data?.success) {
       saveSession(data.user, data.accessToken);
     }

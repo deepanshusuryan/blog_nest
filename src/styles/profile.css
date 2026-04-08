@@ -55,7 +55,7 @@
   animation-delay: 0s;
 }
 
-.profile-hero-accent {
+/* .profile-hero-accent {
   position: absolute;
   top: -60px;
   right: -60px;
@@ -65,7 +65,7 @@
   background: var(--color-amber-soft);
   opacity: 0.8;
   pointer-events: none;
-}
+} */
 
 /* ── Avatar ── */
 .profile-avatar-wrap {
