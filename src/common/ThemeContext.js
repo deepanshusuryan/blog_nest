@@ -61,7 +61,7 @@ export const themes = {
     "--color-border":     "#DDD0C0",
     "--color-amber":      "#8B4513",
     "--color-amber-soft": "#FAF0E6",
-  },
+  },                             
 };
 
 const applyTheme = (name) => {
