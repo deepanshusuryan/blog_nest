@@ -1,0 +1,178 @@
+ /* ============================================
+   TOGGLE STATUS MODAL CSS
+   src/styles/admin/toggle-modal.css
+   ============================================ */
+
+/* ── Overlay ── */
+.tgl-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  animation: tgl-fade-in 0.15s ease;
+}
+
+@keyframes tgl-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Modal Box ── */
+.tgl-modal {
+  background: var(--admin-surface, #13161b);
+  border: 1px solid var(--admin-border, #2a2f3d);
+  border-radius: 14px;
+  padding: 32px 28px 24px;
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  animation: tgl-slide-up 0.2s ease;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+}
+
+@keyframes tgl-slide-up {
+  from { opacity: 0; transform: translateY(16px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ── Icon ── */
+.tgl-icon-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+
+.tgl-icon-danger {
+  background: rgba(244, 91, 91, 0.12);
+  border: 1px solid rgba(244, 91, 91, 0.25);
+  color: var(--admin-danger, #f45b5b);
+}
+
+.tgl-icon-success {
+  background: rgba(52, 201, 133, 0.12);
+  border: 1px solid rgba(52, 201, 133, 0.25);
+  color: var(--admin-success, #34c985);
+}
+
+/* ── Title ── */
+.tgl-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--admin-text-primary, #e8ecf4);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+/* ── Description ── */
+.tgl-desc {
+  font-size: 13px;
+  color: var(--admin-text-secondary, #8a94a8);
+  line-height: 1.6;
+  max-width: 300px;
+}
+
+/* ── Error ── */
+.tgl-error {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(244, 91, 91, 0.1);
+  border: 1px solid rgba(244, 91, 91, 0.25);
+  color: var(--admin-danger, #f45b5b);
+  padding: 8px 12px;
+  border-radius: 7px;
+  font-size: 12.5px;
+  width: 100%;
+  text-align: left;
+}
+
+/* ── Actions ── */
+.tgl-actions {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  margin-top: 8px;
+}
+
+/* ── Buttons ── */
+.tgl-btn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 16px;
+  border-radius: 7px;
+  font-family: var(--admin-font-sans, 'IBM Plex Sans', sans-serif);
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.18s ease;
+}
+
+.tgl-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.tgl-btn-ghost {
+  background: transparent;
+  color: var(--admin-text-secondary, #8a94a8);
+  border-color: var(--admin-border, #2a2f3d);
+}
+
+.tgl-btn-ghost:hover:not(:disabled) {
+  background: var(--admin-surface-2, #1a1e26);
+  color: var(--admin-text-primary, #e8ecf4);
+}
+
+.tgl-btn-danger {
+  background: rgba(244, 91, 91, 0.12);
+  color: var(--admin-danger, #f45b5b);
+  border-color: rgba(244, 91, 91, 0.3);
+}
+
+.tgl-btn-danger:hover:not(:disabled) {
+  background: rgba(244, 91, 91, 0.22);
+  border-color: var(--admin-danger, #f45b5b);
+}
+
+.tgl-btn-success {
+  background: rgba(52, 201, 133, 0.12);
+  color: var(--admin-success, #34c985);
+  border-color: rgba(52, 201, 133, 0.3);
+}
+
+.tgl-btn-success:hover:not(:disabled) {
+  background: rgba(52, 201, 133, 0.22);
+  border-color: var(--admin-success, #34c985);
+}
+
+/* ── Spinner ── */
+.tgl-spinner {
+  width: 13px;
+  height: 13px;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: tgl-spin 0.65s linear infinite;
+  opacity: 0.7;
+  flex-shrink: 0;
+}
+
+@keyframes tgl-spin {
+  to { transform: rotate(360deg); }
+}

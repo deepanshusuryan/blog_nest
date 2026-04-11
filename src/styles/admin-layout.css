@@ -1,0 +1,288 @@
+/* ============================================
+   ADMIN LAYOUT CSS
+   Overrides globals.css for the admin panel
+   Import this AFTER globals.css in admin layout
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap');
+
+/* ── CSS Variables ── */
+:root {
+  --admin-bg: #0d0f12;
+  --admin-surface: #13161b;
+  --admin-surface-2: #1a1e26;
+  --admin-surface-3: #222733;
+  --admin-border: #2a2f3d;
+  --admin-border-light: #333a4d;
+
+  --admin-accent: #4f8ef7;
+  --admin-accent-dim: rgba(79, 142, 247, 0.12);
+  --admin-accent-hover: #6aa0ff;
+
+  --admin-success: #34c985;
+  --admin-warning: #f5a623;
+  --admin-danger: #f45b5b;
+  --admin-muted: #f5a62333;
+
+  --admin-text-primary: #e8ecf4;
+  --admin-text-secondary: #8a94a8;
+  --admin-text-muted: #555e72;
+
+  --admin-sidebar-w: 240px;
+  --admin-topbar-h: 60px;
+
+  --admin-radius: 8px;
+  --admin-radius-sm: 5px;
+  --admin-radius-lg: 12px;
+
+  --admin-font-sans: 'IBM Plex Sans', sans-serif;
+  --admin-font-mono: 'IBM Plex Mono', monospace;
+
+  --admin-shadow-sm: 0 1px 4px rgba(0,0,0,0.4);
+  --admin-shadow-md: 0 4px 16px rgba(0,0,0,0.5);
+  --admin-shadow-lg: 0 8px 32px rgba(0,0,0,0.6);
+  --admin-glow: 0 0 20px rgba(79, 142, 247, 0.18);
+}
+
+/* ── Hard Reset for Admin Scope ── */
+.admin-root,
+.admin-root * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.admin-root {
+  font-family: var(--admin-font-sans);
+  background: var(--admin-bg);
+  color: var(--admin-text-primary);
+  min-height: 100vh;
+  display: flex;
+  overflow: hidden;
+
+  /* Subtle noise texture */
+  background-image:
+    radial-gradient(ellipse 80% 60% at 70% 0%, rgba(79,142,247,0.04) 0%, transparent 60%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+/* ── Main Layout Shell ── */
+.admin-layout {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* ── Content Area ── */
+.admin-content {
+  margin-left: var(--admin-sidebar-w);
+  flex: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ── Top Bar ── */
+.admin-topbar {
+  height: var(--admin-topbar-h);
+  background: var(--admin-surface);
+  border-bottom: 1px solid var(--admin-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(12px);
+}
+
+.admin-topbar-title {
+  font-family: var(--admin-font-mono);
+  font-size: 13px;
+  color: var(--admin-text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.admin-topbar-title span {
+  color: var(--admin-accent);
+}
+
+/* ── Page Content ── */
+.admin-page {
+  flex: 1;
+  padding: 32px 36px;
+  overflow-y: auto;
+}
+
+/* ── Page Header ── */
+.admin-page-header {
+  margin-bottom: 32px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--admin-border);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.admin-page-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--admin-text-primary);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.admin-page-subtitle {
+  font-size: 13px;
+  color: var(--admin-text-muted);
+  font-family: var(--admin-font-mono);
+  margin-top: 6px;
+}
+
+/* ── Card ── */
+.admin-card {
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
+  border-radius: var(--admin-radius-lg);
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.admin-card:hover {
+  border-color: var(--admin-border-light);
+}
+
+.admin-card-header {
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--admin-border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-card-body {
+  padding: 24px;
+}
+
+/* ── Buttons ── */
+.admin-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 16px;
+  border-radius: var(--admin-radius-sm);
+  font-family: var(--admin-font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.18s ease;
+  white-space: nowrap;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+}
+
+.admin-btn-primary {
+  background: var(--admin-accent);
+  color: #fff;
+  border-color: var(--admin-accent);
+  box-shadow: 0 0 12px rgba(79,142,247,0.25);
+}
+
+.admin-btn-primary:hover {
+  background: var(--admin-accent-hover);
+  box-shadow: 0 0 20px rgba(79,142,247,0.4);
+  transform: translateY(-1px);
+}
+
+.admin-btn-ghost {
+  background: transparent;
+  color: var(--admin-text-secondary);
+  border-color: var(--admin-border);
+}
+
+.admin-btn-ghost:hover {
+  background: var(--admin-surface-2);
+  color: var(--admin-text-primary);
+  border-color: var(--admin-border-light);
+}
+
+.admin-btn-danger {
+  background: rgba(244,91,91,0.1);
+  color: var(--admin-danger);
+  border-color: rgba(244,91,91,0.25);
+}
+
+.admin-btn-danger:hover {
+  background: rgba(244,91,91,0.2);
+  border-color: var(--admin-danger);
+}
+
+.admin-btn-sm {
+  padding: 5px 11px;
+  font-size: 12px;
+}
+
+/* ── Badge ── */
+.admin-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 9px;
+  border-radius: 99px;
+  font-size: 11px;
+  font-family: var(--admin-font-mono);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.admin-badge-success {
+  background: rgba(52, 201, 133, 0.12);
+  color: var(--admin-success);
+  border: 1px solid rgba(52,201,133,0.25);
+}
+
+.admin-badge-warning {
+  background: rgba(245,166,35,0.12);
+  color: var(--admin-warning);
+  border: 1px solid rgba(245,166,35,0.25);
+}
+
+.admin-badge-danger {
+  background: rgba(244,91,91,0.12);
+  color: var(--admin-danger);
+  border: 1px solid rgba(244,91,91,0.25);
+}
+
+/* ── Scrollbar ── */
+.admin-root ::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.admin-root ::-webkit-scrollbar-track {
+  background: var(--admin-bg);
+}
+
+.admin-root ::-webkit-scrollbar-thumb {
+  background: var(--admin-border-light);
+  border-radius: 99px;
+}
+
+.admin-root ::-webkit-scrollbar-thumb:hover {
+  background: var(--admin-text-muted);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .admin-content {
+    margin-left: 0;
+  }
+
+  .admin-page {
+    padding: 20px 16px;
+  }
+}

@@ -1,0 +1,224 @@
+/* ============================================
+   ADMIN SIDEBAR CSS
+   src/styles/admin-sidebar.css
+   ============================================ */
+
+/* ── Sidebar Shell ── */
+.admin-sidebar {
+  width: var(--admin-sidebar-w, 240px);
+  height: 100vh;
+  background: var(--admin-surface, #13161b);
+  border-right: 1px solid var(--admin-border, #2a2f3d);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  overflow: hidden;
+
+  /* Subtle left accent line */
+  box-shadow: inset -1px 0 0 var(--admin-border, #2a2f3d);
+}
+
+/* ── Brand / Logo ── */
+.admin-sidebar-brand {
+  height: 60px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--admin-border, #2a2f3d);
+  flex-shrink: 0;
+}
+
+.admin-sidebar-logo {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #4f8ef7 0%, #2d6ce8 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 14px rgba(79, 142, 247, 0.35);
+  flex-shrink: 0;
+}
+
+.admin-sidebar-logo span {
+  font-family: var(--admin-font-sans, 'IBM Plex Sans', sans-serif);
+  font-size: 17px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+}
+
+.admin-sidebar-brand-name {
+  font-family: var(--admin-font-sans, 'IBM Plex Sans', sans-serif);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--admin-text-primary, #e8ecf4);
+  letter-spacing: -0.01em;
+}
+
+.admin-sidebar-brand-sub {
+  font-family: var(--admin-font-mono, 'IBM Plex Mono', monospace);
+  font-size: 10px;
+  color: var(--admin-text-muted, #555e72);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-top: 1px;
+}
+
+/* ── Nav ── */
+.admin-sidebar-nav {
+  flex: 1;
+  padding: 20px 12px;
+  overflow-y: auto;
+}
+
+.admin-sidebar-nav ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.admin-sidebar-nav-label {
+  font-family: var(--admin-font-mono, 'IBM Plex Mono', monospace);
+  font-size: 10px;
+  color: var(--admin-text-muted, #555e72);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0 8px;
+  margin-bottom: 10px;
+}
+
+/* ── Nav Link ── */
+.admin-sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 7px;
+  text-decoration: none;
+  color: var(--admin-text-secondary, #8a94a8);
+  font-size: 13.5px;
+  font-weight: 500;
+  position: relative;
+  transition: all 0.18s ease;
+  border: 1px solid transparent;
+}
+
+.admin-sidebar-link:hover {
+  background: var(--admin-surface-2, #1a1e26);
+  color: var(--admin-text-primary, #e8ecf4);
+  border-color: var(--admin-border, #2a2f3d);
+}
+
+.admin-sidebar-link--active {
+  background: var(--admin-accent-dim, rgba(79, 142, 247, 0.12));
+  color: var(--admin-accent, #4f8ef7);
+  border-color: rgba(79, 142, 247, 0.2);
+}
+
+.admin-sidebar-link--active:hover {
+  background: rgba(79, 142, 247, 0.16);
+  border-color: rgba(79, 142, 247, 0.3);
+  color: var(--admin-accent-hover, #6aa0ff);
+}
+
+.admin-sidebar-link-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+
+.admin-sidebar-link--active .admin-sidebar-link-icon {
+  opacity: 1;
+}
+
+.admin-sidebar-link-label {
+  flex: 1;
+}
+
+/* Active indicator dot */
+.admin-sidebar-link-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--admin-accent, #4f8ef7);
+  box-shadow: 0 0 6px rgba(79, 142, 247, 0.6);
+  flex-shrink: 0;
+}
+
+/* ── Sidebar Footer ── */
+.admin-sidebar-footer {
+  padding: 14px 16px;
+  border-top: 1px solid var(--admin-border, #2a2f3d);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-shrink: 0;
+  background: var(--admin-surface, #13161b);
+}
+
+.admin-sidebar-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow: hidden;
+}
+
+.admin-sidebar-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4f8ef7, #7c3aed);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.admin-sidebar-user-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--admin-text-primary, #e8ecf4);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.admin-sidebar-user-role {
+  font-size: 11px;
+  color: var(--admin-text-muted, #555e72);
+  font-family: var(--admin-font-mono, 'IBM Plex Mono', monospace);
+  white-space: nowrap;
+}
+
+.admin-sidebar-logout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  border: 1px solid var(--admin-border, #2a2f3d);
+  color: var(--admin-text-muted, #555e72);
+  text-decoration: none;
+  transition: all 0.18s ease;
+  flex-shrink: 0;
+}
+
+.admin-sidebar-logout:hover {
+  background: rgba(244, 91, 91, 0.1);
+  border-color: rgba(244, 91, 91, 0.3);
+  color: var(--admin-danger, #f45b5b);
+}
