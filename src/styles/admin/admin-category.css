@@ -1,0 +1,778 @@
+/* ============================================
+   ADMIN CATEGORY CSS
+   src/styles/admin-category.css
+   ============================================ */
+
+/* ── Wrapper ── */
+.cat-wrapper {
+  font-family: var(--admin-font-sans, "IBM Plex Sans", sans-serif);
+  color: var(--admin-text-primary, #e8ecf4);
+}
+
+/* ── Header ── */
+.cat-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--admin-border, #2a2f3d);
+}
+
+.cat-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--admin-text-primary, #e8ecf4);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.cat-subtitle {
+  font-family: var(--admin-font-mono, "IBM Plex Mono", monospace);
+  font-size: 12px;
+  color: var(--admin-text-muted, #555e72);
+  margin-top: 6px;
+  letter-spacing: 0.04em;
+}
+
+/* ── Card / Table Container ── */
+.cat-card {
+  background: var(--admin-surface, #13161b);
+  border: 1px solid var(--admin-border, #2a2f3d);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.cat-row-desc {
+  font-size: 12.5px;
+  color: var(--admin-text-muted, #555e72);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+.cat-row-desc-empty {
+  color: var(--admin-text-muted, #555e72);
+  opacity: 0.4;
+}
+
+.cat-row-name {
+  min-width: 0;
+}
+
+/* ── Table Header ── */
+.cat-table-head {
+  display: grid;
+  grid-template-columns: 200px 1fr 110px 220px;
+  gap: 12px;
+  padding: 12px 20px;
+  background: var(--admin-surface-2, #1a1e26);
+  border-bottom: 1px solid var(--admin-border, #2a2f3d);
+  font-family: var(--admin-font-mono, "IBM Plex Mono", monospace);
+  font-size: 10.5px;
+  color: var(--admin-text-muted, #555e72);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ── List ── */
+.cat-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* ── Row ── */
+.cat-row {
+  display: grid;
+grid-template-columns: 200px 1fr 110px 220px;
+  gap: 12px;
+  align-items: center;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--admin-border, #2a2f3d);
+  transition: background 0.15s ease;
+  animation: cat-row-in 0.3s ease both;
+}
+
+@keyframes cat-row-in {
+  from {
+    opacity: 0;
+    transform: translateX(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.cat-row:last-child {
+  border-bottom: none;
+}
+
+.cat-row:hover {
+  background: var(--admin-surface-2, #1a1e26);
+}
+
+/* ── Row Name ── */
+.cat-row-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--admin-text-primary, #e8ecf4);
+}
+
+.cat-row-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--admin-accent, #4f8ef7);
+  box-shadow: 0 0 6px rgba(79, 142, 247, 0.5);
+  flex-shrink: 0;
+}
+
+/* ── Badges ── */
+.cat-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 99px;
+  font-family: var(--admin-font-mono, "IBM Plex Mono", monospace);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.cat-badge-active {
+  background: rgba(52, 201, 133, 0.12);
+  color: var(--admin-success, #34c985);
+  border: 1px solid rgba(52, 201, 133, 0.25);
+}
+
+.cat-badge-inactive {
+  background: rgba(85, 94, 114, 0.12);
+  color: var(--admin-text-muted, #555e72);
+  border: 1px solid rgba(85, 94, 114, 0.25);
+}
+
+/* ── Actions ── */
+.cat-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ── Buttons ── */
+.cat-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 14px;
+  border-radius: 6px;
+  font-family: var(--admin-font-sans, "IBM Plex Sans", sans-serif);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.18s ease;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.cat-btn-sm {
+  padding: 5px 10px;
+  font-size: 12px;
+}
+
+.cat-btn-primary {
+  background: var(--admin-accent, #4f8ef7);
+  color: #fff;
+  border-color: var(--admin-accent, #4f8ef7);
+  box-shadow: 0 0 12px rgba(79, 142, 247, 0.25);
+}
+
+.cat-btn-primary:hover {
+  background: var(--admin-accent-hover, #6aa0ff);
+  box-shadow: 0 0 20px rgba(79, 142, 247, 0.4);
+  transform: translateY(-1px);
+}
+
+.cat-btn-ghost {
+  background: transparent;
+  color: var(--admin-text-secondary, #8a94a8);
+  border-color: var(--admin-border, #2a2f3d);
+}
+
+.cat-btn-ghost:hover {
+  background: var(--admin-surface-2, #1a1e26);
+  color: var(--admin-text-primary, #e8ecf4);
+  border-color: var(--admin-border-light, #333a4d);
+}
+
+.cat-btn-danger {
+  background: rgba(244, 91, 91, 0.1);
+  color: var(--admin-danger, #f45b5b);
+  border-color: rgba(244, 91, 91, 0.25);
+}
+
+.cat-btn-danger:hover {
+  background: rgba(244, 91, 91, 0.18);
+  border-color: var(--admin-danger, #f45b5b);
+}
+
+.cat-btn-success {
+  background: rgba(52, 201, 133, 0.1);
+  color: var(--admin-success, #34c985);
+  border-color: rgba(52, 201, 133, 0.25);
+}
+
+.cat-btn-success:hover {
+  background: rgba(52, 201, 133, 0.18);
+  border-color: var(--admin-success, #34c985);
+}
+
+/* ── Loading Skeletons ── */
+.cat-loading {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cat-skeleton {
+  height: 52px;
+  border-radius: 8px;
+  background: linear-gradient(
+    90deg,
+    var(--admin-surface, #13161b) 0%,
+    var(--admin-surface-2, #1a1e26) 50%,
+    var(--admin-surface, #13161b) 100%
+  );
+  background-size: 200% 100%;
+  animation: cat-shimmer 1.5s infinite;
+}
+
+@keyframes cat-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* ── Empty State ── */
+.cat-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 24px;
+  background: var(--admin-surface, #13161b);
+  border: 1px dashed var(--admin-border, #2a2f3d);
+  border-radius: 12px;
+  text-align: center;
+}
+
+.cat-empty-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  background: var(--admin-surface-2, #1a1e26);
+  border: 1px solid var(--admin-border, #2a2f3d);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--admin-text-muted, #555e72);
+  margin-bottom: 16px;
+}
+
+.cat-empty-text {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--admin-text-secondary, #8a94a8);
+  margin-bottom: 4px;
+}
+
+.cat-empty-sub {
+  font-size: 13px;
+  color: var(--admin-text-muted, #555e72);
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .cat-table-head {
+    display: none;
+  }
+
+  .cat-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .cat-actions {
+    flex-wrap: wrap;
+  }
+}
+
+/* ============================================
+   ADD TO: src/styles/admin/admin-category.css
+   (append below your existing styles)
+   ============================================ */
+
+/* ── Form Card ── */
+.cat-form-card {
+  background: var(--admin-surface, #13161b);
+  border: 1px solid var(--admin-border, #2a2f3d);
+  border-radius: 12px;
+  padding: 28px;
+  max-width: 560px;
+}
+
+/* ── Form ── */
+.cat-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ── Field ── */
+.cat-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+/* ── Label ── */
+.cat-label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--admin-text-secondary, #8a94a8);
+  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.cat-required {
+  color: var(--admin-danger, #f45b5b);
+  font-size: 13px;
+}
+
+.cat-optional {
+  color: var(--admin-text-muted, #555e72);
+  font-weight: 400;
+  font-size: 11.5px;
+  font-family: var(--admin-font-mono, "IBM Plex Mono", monospace);
+}
+
+/* ── Input ── */
+.cat-input,
+.cat-textarea {
+  background: var(--admin-surface-2, #1a1e26);
+  border: 1px solid var(--admin-border, #2a2f3d);
+  border-radius: 7px;
+  padding: 10px 14px;
+  font-family: var(--admin-font-sans, "IBM Plex Sans", sans-serif);
+  font-size: 13.5px;
+  color: var(--admin-text-primary, #e8ecf4);
+  width: 100%;
+  transition:
+    border-color 0.18s,
+    box-shadow 0.18s;
+  outline: none;
+  resize: none;
+}
+
+.cat-input::placeholder,
+.cat-textarea::placeholder {
+  color: var(--admin-text-muted, #555e72);
+}
+
+.cat-input:hover,
+.cat-textarea:hover {
+  border-color: var(--admin-border-light, #333a4d);
+}
+
+.cat-input:focus,
+.cat-textarea:focus {
+  border-color: var(--admin-accent, #4f8ef7);
+  box-shadow: 0 0 0 3px rgba(79, 142, 247, 0.1);
+}
+
+.cat-input:disabled,
+.cat-textarea:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Alerts ── */
+.cat-alert {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.cat-alert-error {
+  background: rgba(244, 91, 91, 0.1);
+  border: 1px solid rgba(244, 91, 91, 0.25);
+  color: var(--admin-danger, #f45b5b);
+}
+
+.cat-alert-success {
+  background: rgba(52, 201, 133, 0.1);
+  border: 1px solid rgba(52, 201, 133, 0.25);
+  color: var(--admin-success, #34c985);
+}
+
+/* ── Form Actions ── */
+.cat-form-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  padding-top: 4px;
+  border-top: 1px solid var(--admin-border, #2a2f3d);
+  margin-top: 4px;
+}
+
+/* ── Spinner ── */
+.cat-spinner {
+  width: 13px;
+  height: 13px;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: cat-spin 0.65s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes cat-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================================
+   ADD TO: src/styles/admin/admin-category.css
+   (append below existing styles)
+   ============================================ */
+
+/* ── View: top row (status + id) ── */
+.cat-view-toprow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.cat-view-id {
+  font-family: var(--admin-font-mono, "IBM Plex Mono", monospace);
+  font-size: 10.5px;
+  color: var(--admin-text-muted, #555e72);
+  letter-spacing: 0.04em;
+}
+
+/* ── Divider ── */
+.cat-view-divider {
+  height: 1px;
+  background: var(--admin-border, #2a2f3d);
+  margin-bottom: 20px;
+}
+
+/* ── Field row ── */
+.cat-view-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-bottom: 18px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--admin-border, #2a2f3d);
+}
+
+.cat-view-field:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+/* ── Label ── */
+.cat-view-field-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--admin-font-mono, "IBM Plex Mono", monospace);
+  font-size: 10.5px;
+  color: var(--admin-text-muted, #555e72);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ── Value ── */
+.cat-view-field-value {
+  font-size: 14px;
+  color: var(--admin-text-primary, #e8ecf4);
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+/* ── Empty placeholder ── */
+.cat-view-empty {
+  color: var(--admin-text-muted, #555e72);
+  font-style: italic;
+  font-size: 13px;
+}
+
+/* ── Loading skeletons (view page) ── */
+.cat-view-skeleton-row {
+  height: 20px;
+  width: 100%;
+  border-radius: 5px;
+  background: linear-gradient(
+    90deg,
+    var(--admin-surface-2, #1a1e26) 0%,
+    var(--admin-surface-3, #222733) 50%,
+    var(--admin-surface-2, #1a1e26) 100%
+  );
+  background-size: 200% 100%;
+  animation: cat-shimmer 1.5s infinite;
+}
+
+/* ============================================
+   APPEND TO: src/styles/admin/admin-category.css
+   Controls + Pagination
+   ============================================ */
+
+/* ── Controls Bar ── */
+.cat-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.cat-controls-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* ── Search ── */
+.cat-search-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 200px;
+  max-width: 320px;
+}
+
+.cat-search-icon {
+  position: absolute;
+  left: 12px;
+  color: var(--admin-text-muted, #555e72);
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+.cat-search {
+  width: 100%;
+  background: var(--admin-surface-2, #1a1e26);
+  border: 1px solid var(--admin-border, #2a2f3d);
+  border-radius: 7px;
+  padding: 8px 36px 8px 34px;
+  font-family: var(--admin-font-sans, 'IBM Plex Sans', sans-serif);
+  font-size: 13px;
+  color: var(--admin-text-primary, #e8ecf4);
+  outline: none;
+  transition: border-color 0.18s, box-shadow 0.18s;
+}
+
+.cat-search::placeholder {
+  color: var(--admin-text-muted, #555e72);
+}
+
+.cat-search:focus {
+  border-color: var(--admin-accent, #4f8ef7);
+  box-shadow: 0 0 0 3px rgba(79, 142, 247, 0.1);
+}
+
+.cat-search-clear {
+  position: absolute;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--admin-text-muted, #555e72);
+  padding: 2px;
+  border-radius: 4px;
+  transition: color 0.15s;
+}
+
+.cat-search-clear:hover {
+  color: var(--admin-text-primary, #e8ecf4);
+}
+
+/* ── Select ── */
+.cat-select {
+  background: var(--admin-surface-2, #1a1e26);
+  border: 1px solid var(--admin-border, #2a2f3d);
+  border-radius: 7px;
+  padding: 8px 12px;
+  font-family: var(--admin-font-sans, 'IBM Plex Sans', sans-serif);
+  font-size: 12.5px;
+  color: var(--admin-text-secondary, #8a94a8);
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.18s;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%23555e72' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 28px;
+}
+
+.cat-select:hover,
+.cat-select:focus {
+  border-color: var(--admin-border-light, #333a4d);
+  color: var(--admin-text-primary, #e8ecf4);
+}
+
+/* ── Sort Button ── */
+.cat-sort-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 12px;
+  background: var(--admin-surface-2, #1a1e26);
+  border: 1px solid var(--admin-border, #2a2f3d);
+  border-radius: 7px;
+  font-family: var(--admin-font-sans, 'IBM Plex Sans', sans-serif);
+  font-size: 12.5px;
+  color: var(--admin-text-secondary, #8a94a8);
+  cursor: pointer;
+  transition: all 0.18s;
+  white-space: nowrap;
+}
+
+.cat-sort-btn:hover {
+  border-color: var(--admin-border-light, #333a4d);
+  color: var(--admin-text-primary, #e8ecf4);
+}
+
+/* ── Pagination ── */
+.cat-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid var(--admin-border, #2a2f3d);
+  flex-wrap: wrap;
+}
+
+.cat-pagination-info {
+  font-family: var(--admin-font-mono, 'IBM Plex Mono', monospace);
+  font-size: 11.5px;
+  color: var(--admin-text-muted, #555e72);
+  letter-spacing: 0.03em;
+}
+
+.cat-pagination-info strong {
+  color: var(--admin-text-secondary, #8a94a8);
+  font-weight: 600;
+}
+
+.cat-pagination-btns {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Prev / Next */
+.cat-page-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  background: var(--admin-surface-2, #1a1e26);
+  border: 1px solid var(--admin-border, #2a2f3d);
+  border-radius: 7px;
+  font-family: var(--admin-font-sans, 'IBM Plex Sans', sans-serif);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--admin-text-secondary, #8a94a8);
+  cursor: pointer;
+  transition: all 0.18s;
+  white-space: nowrap;
+}
+
+.cat-page-btn:hover:not(:disabled) {
+  background: var(--admin-surface-3, #222733);
+  border-color: var(--admin-border-light, #333a4d);
+  color: var(--admin-text-primary, #e8ecf4);
+}
+
+.cat-page-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* Page number pills */
+.cat-page-numbers {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.cat-page-num {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  background: transparent;
+  font-family: var(--admin-font-mono, 'IBM Plex Mono', monospace);
+  font-size: 12px;
+  color: var(--admin-text-secondary, #8a94a8);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.cat-page-num:hover:not(.cat-page-num--active) {
+  background: var(--admin-surface-2, #1a1e26);
+  border-color: var(--admin-border, #2a2f3d);
+  color: var(--admin-text-primary, #e8ecf4);
+}
+
+.cat-page-num--active {
+  background: var(--admin-accent-dim, rgba(79, 142, 247, 0.13));
+  border-color: rgba(79, 142, 247, 0.25);
+  color: var(--admin-accent, #4f8ef7);
+  font-weight: 600;
+  cursor: default;
+}
+
+.cat-page-ellipsis {
+  font-size: 13px;
+  color: var(--admin-text-muted, #555e72);
+  width: 24px;
+  text-align: center;
+  user-select: none;
+}
