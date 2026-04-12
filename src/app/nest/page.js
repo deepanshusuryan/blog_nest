@@ -1,9 +1,11 @@
-const Blog=()=>{
+import Explore from "@/views/pages/explore/Explore";
+
+const page=()=>{
     return(
         <div>
-            Blog
+            <Explore/>
         </div>
     )
 }
 
-export default Blog;
+export default page;
