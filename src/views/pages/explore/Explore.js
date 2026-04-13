@@ -216,7 +216,7 @@ const Explore = () => {
         setBlogs([]);
         setSkip(0);
         fetchBlogs({ skipVal: 0, searchVal: search, typeVal: "public", append: false });
-    }, [search, type, fetchBlogs]);
+    }, [search, fetchBlogs]);
 
     // Debounce search input → update search state after 400ms
     const handleSearchInput = (e) => {
