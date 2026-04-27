@@ -4,7 +4,6 @@ import { useAuth } from "@/common/AuthContext";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-/* ── Sidebar nav items ──────────────────────────────────── */
 const NAV_ITEMS = [
     {
         label: "My Space",
@@ -77,7 +76,6 @@ const NAV_ITEMS = [
     },
 ];
 
-/* ── Field Row ──────────────────────────────────────────── */
 const FieldRow = ({ label, value, icon, editing, name }) => (
     <div className="profile-field">
         <span className="profile-field-label">
@@ -99,7 +97,6 @@ const FieldRow = ({ label, value, icon, editing, name }) => (
     </div>
 );
 
-/* ── Stat Cell ──────────────────────────────────────────── */
 const StatCell = ({ value, label }) => (
     <div className="profile-stat">
         <span className="profile-stat-value">{value}</span>
@@ -107,7 +104,6 @@ const StatCell = ({ value, label }) => (
     </div>
 );
 
-/* ── Icons ──────────────────────────────────────────────── */
 const IconUser     = () => <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>;
 const IconMail     = () => <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" /><polyline points="22,6 12,13 2,6" /></svg>;
 const IconPhone    = () => <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.55 1.25h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.79a16 16 0 0 0 6 6l.86-.86a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16z" /></svg>;
@@ -117,7 +113,6 @@ const IconCheck    = () => <svg width="14" height="14" viewBox="0 0 24 24" fill=
 const IconLogout   = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" /><polyline points="16 17 21 12 16 7" /><line x1="21" y1="12" x2="9" y2="12" /></svg>;
 const IconCalendar = () => <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" /></svg>;
 
-/* ── Main Component ─────────────────────────────────────── */
 const Profile = () => {
     const { user, logout } = useAuth();
     const router = useRouter();
@@ -141,10 +136,8 @@ const Profile = () => {
     return (
         <div className="profile-root">
 
-            {/* ── SIDEBAR ── */}
             <aside className="profile-sidebar">
 
-                {/* User identity */}
                 <div className="sidebar-user">
                     <div className="sidebar-avatar">
                         {initials}
@@ -154,7 +147,6 @@ const Profile = () => {
                     <span className="sidebar-user-role">Writer</span>
                 </div>
 
-                {/* Nav groups */}
                 <nav className="sidebar-nav">
                     {NAV_ITEMS.map((group) => (
                         <div key={group.label}>
@@ -173,7 +165,6 @@ const Profile = () => {
                     ))}
                 </nav>
 
-                {/* Logout */}
                 <div className="sidebar-footer">
                     <button className="sidebar-nav-item danger" onClick={handleLogout}>
                         <IconLogout />
@@ -182,7 +173,6 @@ const Profile = () => {
                 </div>
             </aside>
 
-            {/* ── MAIN ── */}
             <main className="profile-main">
 
                 <div className="profile-page-heading">
@@ -190,7 +180,6 @@ const Profile = () => {
                     <p>Manage your profile and account details.</p>
                 </div>
 
-                {/* Hero card */}
                 <div className="profile-hero-card">
                     <div className="profile-avatar-wrap">
                         <div className="profile-avatar">
@@ -213,10 +202,8 @@ const Profile = () => {
                     </button>
                 </div>
 
-                {/* Info grid */}
                 <div className="profile-grid">
 
-                    {/* Details */}
                     <div className="profile-card profile-details-card">
                         <h3 className="profile-section-title">
                             <IconUser /> Details
@@ -234,7 +221,6 @@ const Profile = () => {
                         )}
                     </div>
 
-                    {/* Stats */}
                     <div className="profile-card profile-stats-card">
                         <h3 className="profile-section-title">
                             <IconActivity /> Activity
@@ -249,7 +235,6 @@ const Profile = () => {
 
                 </div>
 
-                {/* Joined */}
                 {user?.createdAt && (
                     <p className="profile-joined">
                         <IconCalendar />

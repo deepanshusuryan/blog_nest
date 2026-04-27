@@ -49,9 +49,9 @@ const Header = () => {
 
                 {/* Center Nav */}
                 <nav className="header-nav">
-                    <Link href="/explore" className="header-nav-link">Explore</Link>
-                    <Link href="/topics" className="header-nav-link">Topics</Link>
-                    <Link href="/writers" className="header-nav-link">Writers</Link>
+                    <Link href="/nest" className="header-nav-link">Explore</Link>
+                    {/* <Link href="/topics" className="header-nav-link">Topics</Link>
+                    <Link href="/writers" className="header-nav-link">Writers</Link> */}
                 </nav>
 
                 {/* Right Actions */}
