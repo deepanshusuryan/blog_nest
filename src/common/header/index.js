@@ -35,7 +35,6 @@ const Header = () => {
         <header className={`header${scrolled ? " header--scrolled" : ""}`}>
             <div className="header-inner">
 
-                {/* Logo */}
                 <Link href="/" className="header-logo">
                     <svg className="header-logo-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect width="36" height="36" rx="8" fill="#1A1410" />
@@ -47,14 +46,12 @@ const Header = () => {
                     <span className="header-logo-text">Blog<span className="header-logo-accent">Nest</span></span>
                 </Link>
 
-                {/* Center Nav */}
                 <nav className="header-nav">
                     <Link href="/nest" className="header-nav-link">Explore</Link>
                     {/* <Link href="/topics" className="header-nav-link">Topics</Link>
                     <Link href="/writers" className="header-nav-link">Writers</Link> */}
                 </nav>
 
-                {/* Right Actions */}
                 <div className="header-actions">
                     <ThemeSwitcher/>
                     {user ? (
@@ -125,7 +122,6 @@ const Header = () => {
                     )}
                 </div>
 
-                {/* Mobile hamburger */}
                 <button
                     className={`header-hamburger${menuOpen ? " header-hamburger--open" : ""}`}
                     onClick={() => setMenuOpen(!menuOpen)}
@@ -135,7 +131,6 @@ const Header = () => {
                 </button>
             </div>
 
-            {/* Mobile Menu */}
             {menuOpen && (
                 <div className="header-mobile-menu">
                     <Link href="/explore" className="header-mobile-link" onClick={() => setMenuOpen(false)}>Explore</Link>

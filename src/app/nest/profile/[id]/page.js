@@ -1,9 +1,10 @@
 import Profile from "@/views/pages/profile/view";
 
-const page = () => {
+const page =async ({params}) => {
+    const {id}=await params
     return (
         <div>
-            <Profile />
+            <Profile id={id}/>
         </div>
     )
 }

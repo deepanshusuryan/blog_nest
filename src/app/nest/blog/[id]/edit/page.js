@@ -1,9 +1,9 @@
-import { decodeFormState } from "next/dist/server/app-render/entry-base"
+import BlogEdit from "@/views/pages/blog/edit"
 
 const page=()=>{
     return(
         <div>
-
+            <BlogEdit/>
         </div>
     )
 }

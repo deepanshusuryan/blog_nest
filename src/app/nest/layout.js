@@ -3,6 +3,7 @@ import "../../styles/profile.css"
 import "../../styles/blog-create.css"
 import "../../styles/explore.css"
 import "../../styles/blog.css";
+import "../../styles/status-popup.css"
 
 export default function BlogLayout({ children }) {
     return (

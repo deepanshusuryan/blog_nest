@@ -38,12 +38,12 @@ const SignUpForm = () => {
 
     const handleShowPassword = () => {
         setShowPassword(true);
-        setTimeout(() => setShowPassword(false), 2000);
+        setTimeout(() => setShowPassword(false), 4000);
     };
 
     const handleShowConfirmPassword = () => {
         setShowConfirmPassword(true);
-        setTimeout(() => setShowConfirmPassword(false), 2000);
+        setTimeout(() => setShowConfirmPassword(false), 4000);
     };
 
     const handleChange = (e) => {

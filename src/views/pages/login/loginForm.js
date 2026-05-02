@@ -17,7 +17,7 @@ const LoginForm = () => {
 
     const handleShowPassword = () => {
         setShowPassword(true);
-        setTimeout(() => setShowPassword(false), 2000);
+        setTimeout(() => setShowPassword(false), 4000);
     };
 
     const validateField = (name, value) => {

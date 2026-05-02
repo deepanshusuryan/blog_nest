@@ -4,10 +4,12 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import axiosInstance from "@/services/axiosInstance";
 import { useDebounce } from "@/utils/useDebounce";
-import BlogEditor, { useBlogEditor } from "./blogEditor";
+import BlogEditor, { useBlogEditor } from "@/utils/blogEditor";
+import { useAuth } from "@/common/AuthContext";
 
 const CreateBlog = () => {
     const router = useRouter();
+    const {user}=useAuth();
 
     const [title, setTitle] = useState("");
     const titleRef = useRef(null);
@@ -72,7 +74,7 @@ const CreateBlog = () => {
             });
             if (res.data.success) {
                 toast.success(res.data.message || "Blog published!");
-                router.push("/nest");
+                router.push(`/nest/profile/${user._id}/userblogs`);
             } else {
                 toast.error(res.data.message || "Something went wrong");
             }
