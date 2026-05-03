@@ -6,24 +6,15 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import axiosInstance from "@/services/axiosInstance";
 
-const FieldRow = ({ label, value, icon, editing, name }) => (
+const FieldRow = ({ label, value, icon }) => (
     <div className="profile-field">
         <span className="profile-field-label">
             {icon}
             {label}
         </span>
-        {editing ? (
-            <input
-                className="profile-field-input"
-                defaultValue={value || ""}
-                placeholder={`Enter ${label.toLowerCase()}`}
-                name={name}
-            />
-        ) : (
-            <span className="profile-field-value">
-                {value || <em className="profile-field-empty">Not set</em>}
-            </span>
-        )}
+        <span className="profile-field-value">
+            {value || <em className="profile-field-empty">Not set</em>}
+        </span>
     </div>
 );
 
@@ -160,7 +151,7 @@ const Profile = ({ id }) => {
                                     <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
                                 </svg>
                             ),
-                            href: "/nest/saved",
+                            href: `/nest/profile/${user._id}/saved`,
                         },
                     ],
                 },
@@ -296,7 +287,7 @@ const Profile = ({ id }) => {
                     </div>
 
                     {isOwnProfile && (
-                        <button className="profile-edit-btn">
+                        <button className="profile-edit-btn" onClick={()=>router.push(`/nest/profile/${getUser._id}/edit`)}>
                             <IconEdit /> Edit Profile
                         </button>
                     )}
@@ -322,13 +313,13 @@ const Profile = ({ id }) => {
 
                     <div className="profile-card profile-stats-card">
                         <h3 className="profile-section-title">
-                            <IconActivity /> Activity
+                            <IconActivity /> Stats
                         </h3>
                         <div className="profile-stats-grid">
-                            <StatCell value={getUser?.postsCount ?? "—"} label="Stories" />
-                            <StatCell value={getUser?.followersCount ?? "—"} label="Followers" />
-                            <StatCell value={getUser?.followingCount ?? "—"} label="Following" />
-                            <StatCell value={getUser?.likesCount ?? "—"} label="Likes" />
+                            <StatCell value={getUser?.totalPublishedBlogs ?? "—"} label="Published Blogs" />
+                            <StatCell value={getUser?.totalLikesReceived ?? "—"} label="Total Likes" />
+                            {/* <StatCell value={getUser?.followingCount ?? "—"} label="Following" />
+                            <StatCell value={getUser?.likesCount ?? "—"} label="Likes" /> */}
                         </div>
                     </div>
                 </div>

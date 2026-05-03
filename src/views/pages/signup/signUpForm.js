@@ -57,7 +57,6 @@ const SignUpForm = () => {
         const updatedForm = { ...form, [name]: value };
         setForm(updatedForm);
 
-        // 🔥 single validation call
         const errorMsg = validateField(name, value, updatedForm);
 
         setErrors((prev) => ({
@@ -196,7 +195,6 @@ const SignUpForm = () => {
     return (
         <div className="signup-page">
 
-            {/* ── LEFT PANEL ── */}
             <div className="signup-left">
                 <a className="auth-logo" href="/">
                     <div className="auth-logo-icon">B</div>
@@ -239,7 +237,6 @@ const SignUpForm = () => {
                 </div>
             </div>
 
-            {/* ── RIGHT PANEL ── */}
             <div className="signup-right">
                 <div className="signup-form-wrapper">
 
@@ -250,7 +247,6 @@ const SignUpForm = () => {
 
                     <form onSubmit={handleSubmit}>
 
-                        {/* Name + Contact — two column */}
                         <div className="auth-field-row">
                             <div className="auth-field">
                                 <label htmlFor="su-name">Full name</label>
@@ -334,7 +330,6 @@ const SignUpForm = () => {
                             )}
                         </div>
 
-                        {/* Email */}
                         <div className="auth-field">
                             <label htmlFor="su-email">Email address</label>
                             <div className="auth-input-wrap">
@@ -351,7 +346,6 @@ const SignUpForm = () => {
                             {errors.email && <small className="auth-field-error">{errors.email}</small>}
                         </div>
 
-                        {/* Password */}
                         <div className="auth-field">
                             <label htmlFor="su-password">Password</label>
                             <div className="auth-input-wrap">
@@ -377,7 +371,6 @@ const SignUpForm = () => {
                             {errors.password && <small className="auth-field-error">{errors.password}</small>}
                         </div>
 
-                        {/* Confirm Password */}
                         <div className="auth-field">
                             <label htmlFor="su-confirm">Confirm password</label>
                             <div className="auth-input-wrap">

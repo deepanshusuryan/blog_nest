@@ -101,8 +101,8 @@ const LoginForm = () => {
                         Your stories, your readers, your nest — pick up exactly where you left off.
                     </p>
                 </div>
-
-                <div className="login-quotes">
+                <div></div>
+                {/* <div className="login-quotes">
                     <div className="quote-card">
                         <p>"BlogNest helped me grow from 0 to 12,000 readers in three months."</p>
                         <div className="quote-author">
@@ -117,10 +117,9 @@ const LoginForm = () => {
                             <span className="quote-name">Rahul Sharma · Culture & Design</span>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
 
-            {/* ── RIGHT PANEL ── */}
             <div className="login-right">
                 <div className="login-form-wrapper">
 

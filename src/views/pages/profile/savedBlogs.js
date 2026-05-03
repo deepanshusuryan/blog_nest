@@ -6,15 +6,15 @@ import axiosInstance from "@/services/axiosInstance";
 import { SkeletonCard } from "@/common/skeletonCard";
 import BlogCard from "@/common/blogCard";
 import { useAuth } from "@/common/AuthContext";
+import SaveButton from "@/utils/saveButton";
 
-const UserBlogs = ({ id }) => {
+const SavedBlogs = () => {
     const router = useRouter();
     const LIMIT = 5;
     const { user } = useAuth();
 
-    const [profileUser, setProfileUser] = useState(null);
-
     const [blogs, setBlogs] = useState([]);
+    
     const [loading, setLoading] = useState(true);
     const [loadingMore, setLoadingMore] = useState(false);
     const [error, setError] = useState("");
@@ -26,32 +26,8 @@ const UserBlogs = ({ id }) => {
 
     const debounceRef = useRef(null);
 
-    const fetchUser = useCallback(async () => {
-        try {
-            const res = await axiosInstance.get(`/user/getuser/${id}`);
-            if (res.data.success) {
-                setProfileUser(res.data.user);
-            }
-        } catch (err) {
-            console.log(err);
-            setError("Failed to load user.");
-        }
-    }, [id]);
-
-    useEffect(() => {
-        if (id) fetchUser();
-    }, [id, fetchUser]);
-
-    const isOwnProfile = useMemo(() => {
-        const loggedInUserId = user?._id || user?.id;
-        const profileUserId = profileUser?._id;
-        return !!loggedInUserId && !!profileUserId && String(loggedInUserId) === String(profileUserId);
-    }, [user, profileUser]);
-
     const fetchBlogs = useCallback(
         async ({ skipVal, searchVal, append }) => {
-            if (!id) return;
-
             try {
                 append ? setLoadingMore(true) : setLoading(true);
                 setError("");
@@ -60,15 +36,9 @@ const UserBlogs = ({ id }) => {
                     limit: LIMIT,
                     skip: skipVal,
                     search: searchVal,
-                    userId: id,
-                    type: isOwnProfile ? undefined : "public",
                 };
 
-                if (!isOwnProfile) {
-                    params.blogType = "public";
-                }
-
-                const res = await axiosInstance.get(`/blog/getblogs`, { params });
+                const res = await axiosInstance.get(`/blog/savedblogs`, { params });
 
                 if (res.data.success) {
                     const fetched = res.data.data || [];
@@ -84,13 +54,9 @@ const UserBlogs = ({ id }) => {
                 setLoading(false);
                 setLoadingMore(false);
             }
-        },
-        [id, isOwnProfile]
-    );
+        }, []);
 
     useEffect(() => {
-        if (!profileUser?._id) return;
-
         setBlogs([]);
         setSkip(0);
         fetchBlogs({
@@ -98,7 +64,7 @@ const UserBlogs = ({ id }) => {
             searchVal: search,
             append: false,
         });
-    }, [search, fetchBlogs, profileUser]);
+    }, [search, fetchBlogs]);
 
     const handleSearchInput = (e) => {
         const val = e.target.value;
@@ -131,10 +97,6 @@ const UserBlogs = ({ id }) => {
                     <h1>
                         What's being <em>written</em>
                     </h1>
-                    <p>
-                        Stories, ideas, and perspectives from{" "}
-                        {isOwnProfile ? "you" : (profileUser?.name || "this writer")}.
-                    </p>
                 </div>
 
                 <div className="explore-controls">
@@ -199,21 +161,37 @@ const UserBlogs = ({ id }) => {
                         <p>
                             {search
                                 ? `Nothing matched "${search}". Try a different keyword.`
-                                : isOwnProfile
-                                    ? "You have not published any stories yet. Create one and start your nest."
-                                    : `${profileUser?.name || "This user"} has not published any public stories yet.`}
+                                : "You have not marked any blogs saved yet."}
                         </p>
                     </div>
                 )}
 
                 {!loading && !error && blogs.map((blog, i) => (
-                    <BlogCard
-                        key={blog._id}
-                        blog={blog}
-                        onAuthorClick={(uid) => uid && router.push(`/profile/${uid}`)}
-                        onBlogClick={(bid) => bid && router.push(`/nest/blog/${bid}`)}
-                        style={{ animationDelay: `${i * 0.05}s` }}
-                    />
+                    blog.isAvailable ? (
+                        <BlogCard
+                            key={blog._id}
+                            blog={blog}
+                            onAuthorClick={(uid) => uid && router.push(`/nest/profile/${uid}`)}
+                            onBlogClick={(bid) => bid && router.push(`/nest/blog/${bid}`)}
+                            style={{ animationDelay: `${i * 0.05}s` }}
+                        />
+                    ) : (
+                        <div key={blog._id} className="blog-unavailable-card">
+                            <div className="blog-unavailable-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <line x1="4.93" y1="4.93" x2="19.07" y2="19.07" />
+                                </svg>
+                            </div>
+                            <div className="blog-unavailable-info">
+                                <p className="blog-unavailable-title">This blog is no longer available</p>
+                                <p className="blog-unavailable-sub">
+                                    It may have been deleted or made private by the author.
+                                </p>
+                            </div>
+                            <SaveButton blogId={blog._id} initialSaved={true} />
+                        </div>
+                    )
                 ))}
 
                 {loadingMore && (
@@ -239,4 +217,4 @@ const UserBlogs = ({ id }) => {
     );
 };
 
-export default UserBlogs;
+export default SavedBlogs;

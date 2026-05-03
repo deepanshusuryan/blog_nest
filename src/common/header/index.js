@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation"
 import { useAuth } from "../AuthContext";
 import { toast } from "react-toastify";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "../../styles/header.css";
 import { ThemeSwitcher } from "../ThemeSwitcher";
 
@@ -12,11 +12,25 @@ const Header = () => {
     const { user, logout } = useAuth();
     const [scrolled, setScrolled] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
+    const dropdownRef = useRef(null);
 
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 20);
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setMenuOpen(false);
+            }
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
     }, []);
 
     const handleLogout = async () => {
@@ -53,7 +67,7 @@ const Header = () => {
                 </nav>
 
                 <div className="header-actions">
-                    <ThemeSwitcher/>
+                    <ThemeSwitcher />
                     {user ? (
                         <>
                             <Link href="/nest/blog/write" className="header-btn header-btn--write">
@@ -64,7 +78,7 @@ const Header = () => {
                                 Write
                             </Link>
 
-                            <div className="header-avatar-wrap">
+                            <div className="header-avatar-wrap"  ref={dropdownRef}>
                                 <button
                                     className="header-avatar"
                                     onClick={() => setMenuOpen(!menuOpen)}
@@ -85,7 +99,7 @@ const Header = () => {
                                             className="header-dropdown-item"
                                             onClick={() => setMenuOpen(false)}
                                         >
-                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
                                             Profile
                                         </Link>
                                         {user?.role === "super_admin" && (
@@ -94,7 +108,7 @@ const Header = () => {
                                                 className="header-dropdown-item"
                                                 onClick={() => setMenuOpen(false)}
                                             >
-                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7" /><rect x="14" y="3" width="7" height="7" /><rect x="14" y="14" width="7" height="7" /><rect x="3" y="14" width="7" height="7" /></svg>
                                                 Admin Panel
                                             </Link>
                                         )}
@@ -103,7 +117,7 @@ const Header = () => {
                                             className="header-dropdown-item header-dropdown-item--danger"
                                             onClick={() => { handleLogout(); setMenuOpen(false); }}
                                         >
-                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" /><polyline points="16 17 21 12 16 7" /><line x1="21" y1="12" x2="9" y2="12" /></svg>
                                             Logout
                                         </button>
                                     </div>

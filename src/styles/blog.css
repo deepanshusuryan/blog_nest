@@ -166,17 +166,6 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
-.blog-topbar-action--delete {
-  background: #ffe5e5;
-  border-color: #ff4d4f;
-  color: #b91c1c;
-}
-
-.blog-topbar-action--delete:hover {
-  background: #ff4d4f;
-  border-color: #ff4d4f;
-  color: #ffffff;
-}
 
 /* ── LAYOUT ── */
 .blog-layout {
@@ -552,6 +541,109 @@
 
 .blog-action-spacer {
   flex: 1;
+}
+
+.like-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  background: transparent;
+  color: var(--color-muted);
+  font-family: "DM Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.like-btn:hover {
+  border-color: #fda4af;
+  color: #be123c;
+  background: #fff1f2;
+}
+
+.like-btn--liked {
+  border-color: #fda4af;
+  background: #fff1f2;
+  color: #be123c;
+}
+
+.like-btn svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.like-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.save-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  background: transparent;
+  color: var(--color-muted);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.save-btn:hover {
+  border-color: var(--color-amber);
+  color: var(--color-amber);
+  background: var(--color-amber-soft);
+}
+
+.save-btn--saved {
+  border-color: var(--color-amber);
+  color: var(--color-amber);
+  background: var(--color-amber-soft);
+}
+
+.save-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.blog-unavailable-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 20px;
+  background: var(--color-surface);
+  border: 1px dashed var(--color-border);
+  border-radius: 14px;
+  margin-bottom: 16px;
+  opacity: 0.7;
+}
+
+.blog-unavailable-icon {
+  flex-shrink: 0;
+  color: var(--color-muted);
+}
+
+.blog-unavailable-info {
+  flex: 1;
+}
+
+.blog-unavailable-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-ink);
+  margin: 0 0 3px;
+}
+
+.blog-unavailable-sub {
+  font-size: 12.5px;
+  color: var(--color-muted);
+  margin: 0;
 }
 
 /* ── SIDEBAR ── */
