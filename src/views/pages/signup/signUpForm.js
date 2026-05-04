@@ -403,10 +403,10 @@ const SignUpForm = () => {
 
                     <div className="auth-divider">or</div>
 
-                    <button className="auth-google-btn">
+                    {/* <button className="auth-google-btn">
                         <FcGoogle style={{ fontSize: "18px" }} />
                         Continue with Google
-                    </button>
+                    </button> */}
 
                     <div className="auth-footer-text">
                         Already have an account?{" "}
