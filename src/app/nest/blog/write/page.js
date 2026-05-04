@@ -1,4 +1,4 @@
-import CreateBlog from "@/views/pages/blog/create";
+import CreateBlog from "@/views/pages/blog/createBlog";
 
 const page=()=>{
     return(

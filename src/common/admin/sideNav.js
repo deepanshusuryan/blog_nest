@@ -51,7 +51,6 @@ const AdminSidebar = () => {
 
   return (
     <aside className="admin-sidebar">
-      {/* Logo / Brand */}
       <div className="admin-sidebar-brand">
         <div className="admin-sidebar-logo">
           <span>B</span>
@@ -62,7 +61,6 @@ const AdminSidebar = () => {
         </div>
       </div>
 
-      {/* Nav Section */}
       <nav className="admin-sidebar-nav">
         <p className="admin-sidebar-nav-label">Navigation</p>
         <ul>
@@ -87,7 +85,6 @@ const AdminSidebar = () => {
         </ul>
       </nav>
 
-      {/* Footer */}
       <div className="admin-sidebar-footer">
         <div className="admin-sidebar-user">
           <div className="admin-sidebar-avatar">A</div>

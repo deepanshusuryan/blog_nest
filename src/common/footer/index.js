@@ -6,7 +6,6 @@ export const Footer = () => {
       <div className="footer-card">
         <div className="footer-top">
 
-          {/* Brand */}
           <div className="footer-brand">
             <a href="/" className="footer-logo">
               <svg className="logo-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -50,8 +49,7 @@ export const Footer = () => {
             </div>
           </div>
 
-          {/* Nav Columns */}
-          <nav className="footer-nav">
+          {/* <nav className="footer-nav">
             <div className="nav-col">
               <h4>Product</h4>
               <ul>
@@ -79,17 +77,16 @@ export const Footer = () => {
                 <li><a href="#">Partners</a></li>
               </ul>
             </div>
-          </nav>
+          </nav> */}
 
         </div>
 
-        {/* Bottom Bar */}
         <div className="footer-bottom">
-          <p>© 2025 BlogNest. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} BlogNest. All rights reserved.</p>
           <div className="footer-legal">
             <a href="#">Privacy Policy</a>
             <a href="#">Terms of Service</a>
-            <a href="#">Cookie Settings</a>
+            {/* <a href="#">Cookie Settings</a> */}
           </div>
         </div>
       </div>

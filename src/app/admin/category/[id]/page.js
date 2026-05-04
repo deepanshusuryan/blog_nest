@@ -31,7 +31,6 @@ const ViewCategory = () => {
 
     return (
         <div className="cat-wrapper">
-            {/* Header */}
             <div className="cat-header">
                 <div>
                     <h1 className="cat-title">View Category</h1>
@@ -62,7 +61,6 @@ const ViewCategory = () => {
                 </div>
             </div>
 
-            {/* Error */}
             {error && (
                 <div className="cat-alert cat-alert-error">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
@@ -72,7 +70,6 @@ const ViewCategory = () => {
                 </div>
             )}
 
-            {/* Loading */}
             {loading && (
                 <div className="cat-form-card">
                     <div className="cat-view-skeleton-row" />
@@ -81,11 +78,9 @@ const ViewCategory = () => {
                 </div>
             )}
 
-            {/* Detail Card */}
             {!loading && category && (
                 <div className="cat-form-card">
 
-                    {/* Status pill at top */}
                     <div className="cat-view-toprow">
                         <span className={`cat-badge ${category.isActive ? "cat-badge-active" : "cat-badge-inactive"}`}>
                             {category.isActive ? "Active" : "Inactive"}
@@ -95,7 +90,6 @@ const ViewCategory = () => {
 
                     <div className="cat-view-divider" />
 
-                    {/* Name */}
                     <div className="cat-view-field">
                         <span className="cat-view-field-label">
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
@@ -106,7 +100,6 @@ const ViewCategory = () => {
                         <span className="cat-view-field-value">{category.name}</span>
                     </div>
 
-                    {/* Description */}
                     <div className="cat-view-field">
                         <span className="cat-view-field-label">
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
@@ -121,7 +114,6 @@ const ViewCategory = () => {
                         </span>
                     </div>
 
-                    {/* Created At */}
                     {category.createdAt && (
                         <div className="cat-view-field">
                             <span className="cat-view-field-label">

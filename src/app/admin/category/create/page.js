@@ -40,7 +40,6 @@ const AddCategory = () => {
 
     return (
         <div className="cat-wrapper">
-            {/* Page Header */}
             <div className="cat-header">
                 <div>
                     <h1 className="cat-title">New Category</h1>
@@ -57,11 +56,9 @@ const AddCategory = () => {
                 </button>
             </div>
 
-            {/* Form Card */}
             <div className="cat-form-card">
                 <form onSubmit={handleSubmit} className="cat-form">
 
-                    {/* Error / Success */}
                     {error && (
                         <div className="cat-alert cat-alert-error">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
@@ -79,7 +76,6 @@ const AddCategory = () => {
                         </div>
                     )}
 
-                    {/* Name */}
                     <div className="cat-field">
                         <label className="cat-label" htmlFor="name">
                             Category Name <span className="cat-required">*</span>
@@ -97,7 +93,6 @@ const AddCategory = () => {
                         />
                     </div>
 
-                    {/* Description */}
                     <div className="cat-field">
                         <label className="cat-label" htmlFor="description">
                             Description <span className="cat-optional">(optional)</span>
@@ -114,7 +109,6 @@ const AddCategory = () => {
                         />
                     </div>
 
-                    {/* Actions */}
                     <div className="cat-form-actions">
                         <button
                             type="button"

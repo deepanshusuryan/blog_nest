@@ -1,4 +1,4 @@
-import Blog from "@/views/pages/blog/view/index";
+import Blog from "@/views/pages/blog/viewBlog";
 
 const page= async ({params})=>{
     const { id } =await params;

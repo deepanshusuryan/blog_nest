@@ -62,8 +62,6 @@ const Header = () => {
 
                 <nav className="header-nav">
                     <Link href="/nest" className="header-nav-link">Explore</Link>
-                    {/* <Link href="/topics" className="header-nav-link">Topics</Link>
-                    <Link href="/writers" className="header-nav-link">Writers</Link> */}
                 </nav>
 
                 <div className="header-actions">

@@ -102,22 +102,6 @@ const LoginForm = () => {
                     </p>
                 </div>
                 <div></div>
-                {/* <div className="login-quotes">
-                    <div className="quote-card">
-                        <p>"BlogNest helped me grow from 0 to 12,000 readers in three months."</p>
-                        <div className="quote-author">
-                            <div className="quote-avatar" style={{ background: "var(--color-amber)" }}>A</div>
-                            <span className="quote-name">Ananya Mehta · Tech Writer</span>
-                        </div>
-                    </div>
-                    <div className="quote-card">
-                        <p>"The cleanest writing experience I've found. Nothing gets in the way of the words."</p>
-                        <div className="quote-author">
-                            <div className="quote-avatar" style={{ background: "var(--color-ink-light)" }}>R</div>
-                            <span className="quote-name">Rahul Sharma · Culture & Design</span>
-                        </div>
-                    </div>
-                </div> */}
             </div>
 
             <div className="login-right">

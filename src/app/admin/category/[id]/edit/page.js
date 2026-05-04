@@ -65,7 +65,6 @@ const EditCategory = () => {
 
     return (
         <div className="cat-wrapper">
-            {/* Header */}
             <div className="cat-header">
                 <div>
                     <h1 className="cat-title">Edit Category</h1>
@@ -84,7 +83,6 @@ const EditCategory = () => {
                 </div>
             </div>
 
-            {/* Fetch error */}
             {error && !fetching && (
                 <div className="cat-alert cat-alert-error" style={{ marginBottom: "16px" }}>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
@@ -94,7 +92,6 @@ const EditCategory = () => {
                 </div>
             )}
 
-            {/* Skeleton while fetching */}
             {fetching && (
                 <div className="cat-form-card">
                     <div className="cat-view-skeleton-row" />
@@ -103,12 +100,10 @@ const EditCategory = () => {
                 </div>
             )}
 
-            {/* Form */}
             {!fetching && (
                 <div className="cat-form-card">
                     <form onSubmit={handleSubmit} className="cat-form">
 
-                        {/* Inline form error/success */}
                         {error && (
                             <div className="cat-alert cat-alert-error">
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
@@ -126,7 +121,6 @@ const EditCategory = () => {
                             </div>
                         )}
 
-                        {/* Name */}
                         <div className="cat-field">
                             <label className="cat-label" htmlFor="name">
                                 Category Name <span className="cat-required">*</span>
@@ -144,7 +138,6 @@ const EditCategory = () => {
                             />
                         </div>
 
-                        {/* Description */}
                         <div className="cat-field">
                             <label className="cat-label" htmlFor="description">
                                 Description <span className="cat-optional">(optional)</span>
@@ -161,7 +154,6 @@ const EditCategory = () => {
                             />
                         </div>
 
-                        {/* Actions */}
                         <div className="cat-form-actions">
                             <button
                                 type="button"

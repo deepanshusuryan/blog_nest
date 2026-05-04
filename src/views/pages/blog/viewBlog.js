@@ -7,6 +7,8 @@ import { SkeletonBlog } from "@/common/skeletonCard";
 import StatusTogglePopup from "@/common/StatusTogglePopup";
 import { toast } from "react-toastify";
 import ConfirmPopup from "@/common/DeletePopup";
+import SaveButton from "@/utils/saveButton";
+import LikeButton from "@/utils/likeButton";
 
 const getInitials = (name = "") =>
     name.split(" ").map((w) => w[0]).slice(0, 2).join("").toUpperCase() || "?";
@@ -66,7 +68,7 @@ const Blog = () => {
         }
     };
 
-    const isEditable = new Date(blog?.createdAt).getTime() + 24 * 60 * 60 * 1000 - Date.now();
+    const isEditable = (Date.now() - new Date(blog?.createdAt).getTime()) / (1000 * 60 * 60);
 
     const authorName = typeof blog?.userId === "object"
         ? blog?.userId?.name
@@ -160,23 +162,18 @@ const Blog = () => {
                         />
 
                         <div className="blog-actions">
-                            <button className="blog-action-btn" aria-label="Like">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                                </svg>
-                                Like
-                            </button>
+                            <LikeButton
+                                blogId={blog._id}
+                                initialLiked={blog.isLiked || false}
+                                initialCount={blog.likesCount || blog.likes?.length || 0}
+                            />
                             {/* <button className="blog-action-btn" aria-label="Comment">
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                         <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
                                     </svg>
                                     Comment
                                 </button> */}
-                            <button className="blog-action-btn icon-only" aria-label="Save">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
-                                </svg>
-                            </button>
+                            <SaveButton blogId={blog._id} initialSaved={true} />
                             <div className="blog-action-spacer" />
                             {/* <button className="blog-action-btn icon-only" aria-label="Share">
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -217,7 +214,6 @@ const Blog = () => {
                             </div>
                         </div>
 
-                        {/* Stats card */}
                         <div className="blog-sidebar-card">
                             <div className="blog-sidebar-label">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -243,7 +239,6 @@ const Blog = () => {
                         {!loading && !error && isOwner ?
                             <div className="blog-sidebar-card">
                                 <div className="blog-sidebar-actions">
-                                    {isEditable && (
                                         <button
                                             className="blog-sidebar-action-btn blog-sidebar-action-btn--edit"
                                             onClick={() => router.push(`/nest/blog/${id}/edit`)}
@@ -254,7 +249,6 @@ const Blog = () => {
                                             </svg>
                                             Edit
                                         </button>
-                                    )}
 
                                     <button
                                         className="blog-sidebar-action-btn blog-sidebar-action-btn--delete"
@@ -271,7 +265,7 @@ const Blog = () => {
                                     </button>
                                     <ConfirmPopup
                                         open={openDeletePopup}
-                                        onClose={() => !loading && setOpen(false)}
+                                        onClose={() => !loading && setOpenDeletePopup(false)}
                                         onConfirm={handleDelete}
                                         loading={loading}
                                         title="Delete blog"

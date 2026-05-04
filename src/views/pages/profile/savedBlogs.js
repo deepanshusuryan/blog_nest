@@ -111,7 +111,7 @@ const SavedBlogs = () => {
                         <input
                             className="explore-search"
                             type="text"
-                            placeholder="Search stories or categories…"
+                            placeholder="Search by title or categories…"
                             value={searchInput}
                             onChange={handleSearchInput}
                         />

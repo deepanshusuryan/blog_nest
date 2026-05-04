@@ -318,8 +318,6 @@ const Profile = ({ id }) => {
                         <div className="profile-stats-grid">
                             <StatCell value={getUser?.totalPublishedBlogs ?? "—"} label="Published Blogs" />
                             <StatCell value={getUser?.totalLikesReceived ?? "—"} label="Total Likes" />
-                            {/* <StatCell value={getUser?.followingCount ?? "—"} label="Following" />
-                            <StatCell value={getUser?.likesCount ?? "—"} label="Likes" /> */}
                         </div>
                     </div>
                 </div>
