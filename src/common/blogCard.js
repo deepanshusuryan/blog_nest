@@ -2,6 +2,7 @@ import LikeButton from "@/utils/likeButton";
 import SaveButton from "@/utils/saveButton";
 import { useAuth } from "./AuthContext";
 import { useRouter } from "next/navigation";
+import CommentPopupButton from "@/utils/commentPopupButton";
 
 const BlogCard = ({ blog, onAuthorClick, onBlogClick, style }) => {
     const authorName = blog.userName || "Anonymous";
@@ -92,16 +93,11 @@ const BlogCard = ({ blog, onAuthorClick, onBlogClick, style }) => {
                         initialLiked={blog.isLiked || false}
                         initialCount={blog.likesCount || blog.likes?.length || 0}
                     />
-                    {/* <button className="blog-action-btn" aria-label="Comment">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
-                        </svg>
-                        Comment
-                    </button> */}
+                    <CommentPopupButton blogId={blog._id} />
                     {user._id !== blog.userId &&
                         <SaveButton
-                            blogId={blog._id}
-                            initialSaved={blog.isSaved || false}
+                        blogId={blog._id}
+                        initialSaved={blog.isSaved || false}
                         />
                     }
                 </div>

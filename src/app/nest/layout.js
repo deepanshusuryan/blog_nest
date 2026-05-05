@@ -1,9 +1,10 @@
 import { PrivateRoute } from "@/common/ProtectedRoutes";
-import "../../styles/profile.css"
-import "../../styles/blog-create.css"
-import "../../styles/explore.css"
+import "../../styles/profile.css";
+import "../../styles/blog-create.css";
+import "../../styles/explore.css";
 import "../../styles/blog.css";
-import "../../styles/status-popup.css"
+import "../../styles/status-popup.css";
+import "../../styles/comment.css";
 
 export default function BlogLayout({ children }) {
     return (

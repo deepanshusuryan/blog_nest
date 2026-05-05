@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 import ConfirmPopup from "@/common/DeletePopup";
 import SaveButton from "@/utils/saveButton";
 import LikeButton from "@/utils/likeButton";
+import CommentPopupButton from "@/utils/commentPopupButton";
 
 const getInitials = (name = "") =>
     name.split(" ").map((w) => w[0]).slice(0, 2).join("").toUpperCase() || "?";
@@ -167,12 +168,7 @@ const Blog = () => {
                                 initialLiked={blog.isLiked || false}
                                 initialCount={blog.likesCount || blog.likes?.length || 0}
                             />
-                            {/* <button className="blog-action-btn" aria-label="Comment">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-                                    </svg>
-                                    Comment
-                                </button> */}
+                            <CommentPopupButton blogId={blog._id} commentsCount={blog.commentsCount || 0}/>
                             <SaveButton blogId={blog._id} initialSaved={true} />
                             <div className="blog-action-spacer" />
                             {/* <button className="blog-action-btn icon-only" aria-label="Share">

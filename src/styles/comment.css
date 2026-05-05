@@ -1,0 +1,197 @@
+.comment-section {
+    margin-top: 40px;
+    padding-top: 32px;
+    border-top: 1px solid var(--color-border);
+}
+
+.comment-section-title {
+    font-family: "Playfair Display", serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--color-ink);
+    margin: 0 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.comment-count {
+    font-family: "DM Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    background: var(--color-amber-soft);
+    color: var(--color-amber);
+    padding: 2px 8px;
+    border-radius: 20px;
+}
+
+/* Input */
+.comment-input-wrap {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 24px;
+}
+
+.comment-textarea {
+    width: 100%;
+    border: none;
+    background: transparent;
+    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
+    color: var(--color-ink);
+    resize: none;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.comment-input-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.comment-char-count {
+    font-size: 11px;
+    color: var(--color-muted);
+}
+
+.comment-submit-btn {
+    padding: 6px 16px;
+    background: var(--color-ink);
+    color: var(--color-bg);
+    border: none;
+    border-radius: 8px;
+    font-family: "DM Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.15s;
+}
+
+.comment-submit-btn:hover   { opacity: 0.85; }
+.comment-submit-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* Comment item */
+.comment-item {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.comment-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--color-amber);
+    color: var(--color-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+    font-family: "Playfair Display", serif;
+}
+
+.comment-body { flex: 1; }
+
+.comment-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+    flex-wrap: wrap;
+}
+
+.comment-author {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-ink);
+}
+
+.comment-time {
+    font-size: 11.5px;
+    color: var(--color-muted);
+}
+
+.comment-delete-btn {
+    font-size: 11.5px;
+    color: #be123c;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: auto;
+    padding: 0;
+}
+
+.comment-delete-btn:hover { text-decoration: underline; }
+
+.comment-content {
+    font-size: 14px;
+    color: var(--color-ink);
+    line-height: 1.6;
+    margin: 0 0 8px;
+}
+
+.comment-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.comment-action-btn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    color: var(--color-muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-family: "DM Sans", sans-serif;
+    transition: color 0.15s;
+}
+
+.comment-action-btn:hover        { color: var(--color-ink); }
+.comment-action-btn--liked       { color: #be123c; }
+.comment-action-btn--liked:hover { color: #be123c; }
+
+/* Reply box */
+.comment-reply-box {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.comment-input {
+    flex: 1;
+    padding: 7px 12px;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    font-family: "DM Sans", sans-serif;
+    font-size: 13px;
+    background: var(--color-bg);
+    color: var(--color-ink);
+    outline: none;
+}
+
+.comment-input:focus { border-color: var(--color-amber); }
+
+/* Replies */
+.comment-replies {
+    margin-top: 12px;
+    padding-left: 16px;
+    border-left: 2px solid var(--color-border);
+}
+
+.comment-loading,
+.comment-empty {
+    font-size: 14px;
+    color: var(--color-muted);
+    text-align: center;
+    padding: 20px 0;
+}
