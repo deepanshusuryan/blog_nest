@@ -22,6 +22,7 @@ const CommentItem = ({ comment, blogId, onDelete }) => {
     const { user } = useAuth();
     const [liked,        setLiked]        = useState(comment.isLiked);
     const [likesCount,   setLikesCount]   = useState(comment.likesCount);
+    const [likeDisabled, setLikeDisabled] = useState(false);
     const [showReplies,  setShowReplies]  = useState(false);
     const [replies,      setReplies]      = useState([]);
     const [replyInput,   setReplyInput]   = useState("");
@@ -53,7 +54,10 @@ const CommentItem = ({ comment, blogId, onDelete }) => {
     };
 
     const handleLike = async () => {
-        if (!user) return;
+        if (!user || likeDisabled) return;
+        setLikeDisabled(true);
+        setTimeout(() => setLikeDisabled(false), 500);
+
         const wasLiked = liked;
         setLiked(!liked);
         setLikesCount(prev => wasLiked ? prev - 1 : prev + 1);

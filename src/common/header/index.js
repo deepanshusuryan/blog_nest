@@ -148,9 +148,7 @@ const Header = () => {
 
             {mobileMenuOpen && (
                 <div className="header-mobile-menu">
-                    <Link href="/explore" className="header-mobile-link" onClick={() => setMobileMenuOpen(false)}>Explore</Link>
-                    <Link href="/topics" className="header-mobile-link" onClick={() => setMobileMenuOpen(false)}>Topics</Link>
-                    <Link href="/writers" className="header-mobile-link" onClick={() => setMobileMenuOpen(false)}>Writers</Link>
+                    <Link href="/nest" className="header-mobile-link" onClick={() => setMobileMenuOpen(false)}>Explore</Link>
                     <div className="header-mobile-divider" />
                     {user ? (
                         <>

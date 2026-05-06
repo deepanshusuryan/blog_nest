@@ -9,11 +9,16 @@ const LikeButton = ({ blogId, initialLiked = false, initialCount = 0 }) => {
     const { user } = useAuth();
     const router = useRouter();
 
-    const [liked,      setLiked]      = useState(initialLiked);
+    const [liked, setLiked] = useState(initialLiked);
     const [likesCount, setLikesCount] = useState(initialCount);
-    const [loading,    setLoading]    = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [likeDisabled, setLikeDisabled] = useState(false);
 
     const handleLike = async () => {
+        if (likeDisabled || loading) return;
+        setLikeDisabled(true);
+        setTimeout(() => setLikeDisabled(false), 500);
+
         if (!user) {
             toast.error("Please login to like blogs");
             router.push("/login");
@@ -44,7 +49,6 @@ const LikeButton = ({ blogId, initialLiked = false, initialCount = 0 }) => {
     return (
         <button
             onClick={handleLike}
-            disabled={loading}
             className={`like-btn ${liked ? "like-btn--liked" : ""}`}
         >
             <svg

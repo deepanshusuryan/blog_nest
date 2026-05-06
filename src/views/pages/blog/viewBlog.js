@@ -124,7 +124,7 @@ const Blog = () => {
                         <div className="blog-meta">
                             <div
                                 className="blog-meta-avatar"
-                                onClick={() => blogOwnerId && router.push(`/profile/${blogOwnerId}`)}
+                                onClick={() => blogOwnerId && router.push(`/nest/profile/${blogOwnerId}`)}
                                 title={`View ${authorName}'s profile`}
                             >
                                 {getInitials(authorName)}
